@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- 
+  Please see the license.html file included with this distribution for 
+  attribution and copyright information.
+-->
+
+<root>
+	<windowclass name="desktopdecal">
+		<script>
+			function onInit()
+				OptionsManager.registerCallback("DDCL", onUpdate);
+				onUpdate();
+			end
+			
+			function onClose()
+				OptionsManager.unregisterCallback("DDCL", onUpdate);
+			end
+			
+			function onUpdate()
+				local sDecal = OptionsManager.getOption("DDCL");
+				if sDecal == "off" then
+					sDecal = "";
+				end
+				decal.setIcon(sDecal, true);
+			end
+		</script>
+		<sheetdata>
+			<genericcontrol name="decal">
+				<bounds>0,0,-1,-1</bounds>
+				<disabled />
+			</genericcontrol>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="chat">
+		<frame>chatbox</frame>
+		<noclose />
+		<sizelimits>
+			<dynamic />
+			<minimum width="350" height="380" />
+			<maximum width="490" height="900" />
+		</sizelimits>
+		<sheetdata>
+			<basicchatentry name="entry" />
+			<basicchatentryscroll name="entryscroll" />
+			<basicchatentrymode name="mode" />
+
+			<combobox name="language">
+				<anchored height="15">
+					<right parent="entry" anchor="right" offset="25" />
+					<bottom parent="entry" anchor="top" relation="relative" offset="-5" />
+					<left parent="" anchor="center" offset="35" />
+				</anchored>
+				<frame>
+					<name>tempmodsmall</name>
+					<offset>25,2,5,4</offset>
+				</frame>
+				<tooltip textres="chat_tooltip_language" />
+				<font>chatfont</font>
+				<listmaxsize>12</listmaxsize>
+			</combobox>
+			<genericcontrol name="languageicon">
+				<anchored to="language" position="lefthigh" offset="5,0" width="16" height="16" />
+				<icon>button_speak</icon>
+				<tooltip textres="chat_tooltip_language" />
+			</genericcontrol>
+			
+			<basicchatwindow name="chat" />
+			<basicchatwindowscroll name="chatscroll" />
+			<basicchatwindowstatus name="chatstatus" />
+			
+			<chat_resize />
+		</sheetdata>
+	</windowclass>
+	<windowclass name="chatlocal">
+		<frame>chatbox</frame>
+		<noclose />
+		<sizelimits>
+			<dynamic />
+			<minimum width="350" height="350" />
+		</sizelimits>
+		<sheetdata>
+			<basicchatentry />
+			<basicchatentryscroll />
+			<basicchatentrymode />
+
+			<basicchatwindow name="chat" />
+			<basicchatwindowscroll />
+		</sheetdata>
+	</windowclass>
+	
+	<windowclass name="identitylist">
+		<sizelimits>
+			<minimum height="20" />
+		</sizelimits>
+		<script file="desktop/scripts/identitylist.lua" />
+		<sheetdata>
+			<genericcontrol name="anchor">
+				<bounds>0,0,0,0</bounds>
+			</genericcontrol>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="characterlist">
+		<script file="desktop/scripts/characterlist.lua" />
+		<sheetdata>
+			<genericcontrol name="anchor">
+				<bounds>5,5,1,1</bounds>
+			</genericcontrol>
+		</sheetdata>
+	</windowclass>
+	
+	<windowclass name="shortcuts">
+		<script>
+			function onInit()
+				DesktopManager.registerContainerWindow(self);
+			end
+		</script>
+		<sheetdata>
+			<subwindow name="shortcutbar">
+				<anchored position="insideright" width="100" />
+				<class>shortcutbar</class>
+				<activate />
+				<fastinit />
+			</subwindow>
+		</sheetdata>
+	</windowclass>
+	<windowclass name="shortcutbar">
+		<frame>shortcuts</frame>
+		<sheetdata />
+	</windowclass>
+	<windowclass name="shortcutsanchor">
+		<minimum width="0" height="0" />
+		<sheetdata />
+	</windowclass>
+
+	<windowclass name="modifierstack">
+		<sizelimits>
+			<minimum width="200" height="60" />
+		</sizelimits>
+		<noclose />
+		<script>
+			function onInit()
+				ModifierStack.registerControl(self);
+			end
+			
+			function onClose()
+				ModifierStack.registerControl(nil);
+			end
+		</script>
+		<sheetdata>
+			<genericcontrol name="base">
+				<bounds>5,5,64,52</bounds>
+				<icon>modcollector</icon>
+				<counters>
+					<icon>modcollector_counter</icon>
+					<offset>
+						<x>10</x>
+						<y>45</y>
+					</offset>
+					<spacing>9</spacing>
+					<hoversize>4</hoversize>
+				</counters>
+				<acceptdrop>
+					<type>dice</type>
+					<type>number</type>
+					<type>attack</type>
+					<type>damage</type>
+					<type>heal</type>
+					<type>init</type>
+					<type>save</type>
+					<type>check</type>
+					<type>recovery</type>
+				</acceptdrop>
+				<script file="desktop/scripts/modifierstack_base.lua" />
+			</genericcontrol>
+			<numbercontrol name="modifier">
+				<bounds>15,12,42,22</bounds>
+				<stateframe>
+					<keyedit name="modstackfocus" />
+					<hover name="modstackfocus" />
+					<drophilight name="modstackfocus" />
+				</stateframe>
+				<font>modcollector</font>
+				<displaysign />
+				<droptypes>
+					<type>number</type>
+					<type>dice</type>
+					<type>attack</type>
+					<type>fullattack</type>
+					<type>damage</type>
+					<type>heal</type>
+					<type>init</type>
+					<type>save</type>
+					<type>check</type>
+					<type>recovery</type>
+				</droptypes>
+				<script file="desktop/scripts/modifierstack_modifier.lua" />
+			</numbercontrol>
+			<stringcontrol name="label">
+				<bounds>9,34,54,12</bounds>
+				<font>modcollectorlabel</font>
+				<static textres="modstack_label_modifier" />
+				<center />
+				<script>
+					function onDrop(x, y, draginfo)
+						return window.base.onDrop(x, y, draginfo);
+					end
+				</script>
+			</stringcontrol>
+			<buttoncontrol name="targeting">
+				<anchored position="insidetopleft" offset="2,2" width="15" height="15" />
+				<state icon="drag_targeting" color="77FFFFFF" frame="mini_name" frameoffset="2,2,2,2" tooltipres="modstack_tooltip_targeting_off" />
+				<state icon="drag_targeting" color="FFFFFFFF" frame="mini_name" frameoffset="2,2,2,2" tooltipres="modstack_tooltip_targeting_on" />
+				<default>1</default>
+			</buttoncontrol>
+			
+			<button_modifierkey name="ADV">
+				<bounds>80,8,30,18</bounds>
+				<text>ADV</text>
+			</button_modifierkey>
+			<button_modifierkey name="DIS">
+				<bounds>80,35,30,18</bounds>
+				<text>DIS</text>
+			</button_modifierkey>
+			
+			<button_modifierkey name="PLUS2">
+				<bounds>120,8,30,18</bounds>
+				<text>+2</text>
+			</button_modifierkey>
+			<button_modifierkey name="MINUS2">
+				<bounds>120,35,30,18</bounds>
+				<text>-2</text>
+			</button_modifierkey>
+			
+			<button_modifierkey name="PLUS5">
+				<bounds>160,8,30,18</bounds>
+				<text>+5</text>
+			</button_modifierkey>
+			<button_modifierkey name="MINUS5">
+				<bounds>160,35,30,18</bounds>
+				<text>-5</text>
+			</button_modifierkey>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="dicetower">
+		<sizelimits>
+			<minimum width="90" height="90" />
+		</sizelimits>
+		<noclose />
+		<sheetdata>
+			<genericcontrol name="base">
+				<bounds>0,0,100,100</bounds>
+				<frame name="dicetower_normal" />
+				<stateframe>
+					<drophover name="dicetower_drop" nobaseframe="true" />
+				</stateframe>
+				<tooltip textres="dicetower_tooltip" />
+				<droptypes>
+					<type>dice</type>
+					<type>table</type>
+				</droptypes>
+				<script>
+					function onInit()
+						DiceTowerManager.registerControl(self);
+					end
+					
+					function onDrop(x, y, draginfo)
+						return DiceTowerManager.onDrop(draginfo);
+					end
+				</script>
+			</genericcontrol>
+		</sheetdata>
+	</windowclass>
+	
+	
+	<windowclass name="ringstain">
+		<sizelimits>
+			<minimum width="100" height="100" />
+		</sizelimits>
+		<noclose />
+		<sheetdata>
+			<genericcontrol name="base">
+				<bounds>0,0,180,180</bounds>
+				<frame name="ringstain" />
+			</genericcontrol>
+		</sheetdata>
+	</windowclass>
+</root>
+

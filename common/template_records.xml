@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- 
+  Please see the license.html file included with this distribution for 
+  attribution and copyright information.
+-->
+
+<root>
+	<template name="string_record_name">
+		<basicstring>
+			<anchored>
+				<top offset="2"/>
+				<left offset="40" />
+				<right parent="rightanchor" anchor="left" relation="relative" offset="-5" />
+			</anchored>
+			<font>reference-title</font>
+			<multilinespacing>25</multilinespacing>
+			<nodrag />
+			<delaykeyupdate />
+		</basicstring>
+	</template>
+	<template name="string_record_name_ref">
+		<string_record_name>
+			<anchored merge="merge">
+				<right parent="" anchor="right" relation="absolute" offset="-25" />
+			</anchored>
+			<nodrag />
+			<readonly />
+		</string_record_name>
+	</template>
+	<template name="string_record_name_image">
+		<string_record_name>
+			<anchored height="25" merge="merge" />
+			<multilinespacing merge="delete" />
+		</string_record_name>
+	</template>
+</root>

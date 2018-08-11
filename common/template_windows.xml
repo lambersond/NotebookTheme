@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- 
+  Please see the license.html file included with this distribution for 
+  attribution and copyright information.
+-->
+
+<root>
+	<template name="windowtitlebar">
+		<genericcontrol>
+			<bounds>0,0,-1,56</bounds>
+			<frame name="windowtitle" offset="35,4,35,0" />
+			<font>windowtitle</font>
+			<parameters>
+				<windowmargin>60</windowmargin>
+				<controly>0</controly>
+				<controlheight>56</controlheight>
+				<minwidth>100</minwidth>
+			</parameters>
+			<script file="common/scripts/windowtitlebar.lua" />
+		</genericcontrol>
+	</template>
+
+	<template name="anchor_title_utilitybox">
+		<genericcontrol>
+			<anchored height="0">
+				<top parent="title" anchor="bottom" offset="0" />
+				<left parent="" anchor="left" offset="40" />
+				<right parent="" anchor="right" offset="-33" />
+			</anchored>
+			<disabled />
+		</genericcontrol>
+	</template>
+	<template name="anchor_title_utilitybox3">
+		<genericcontrol>
+			<anchored height="0">
+				<top parent="title" anchor="bottom" offset="0" />
+				<left parent="" anchor="left" offset="40" />
+				<right parent="" anchor="right" offset="-37" />
+			</anchored>
+			<disabled />
+		</genericcontrol>
+	</template>
+	<template name="anchor_title_charsheet">
+		<genericcontrol>
+			<anchored height="0">
+				<top offset="35" />
+				<left parent="" anchor="left" offset="15" />
+				<right parent="" anchor="right" offset="-30" />
+			</anchored>
+			<disabled />
+		</genericcontrol>
+	</template>
+	<template name="anchor_title_charsheethelper">
+		<genericcontrol>
+			<anchored height="0">
+				<top parent="title" anchor="bottom" offset="0" />
+				<left parent="" anchor="left" offset="20" />
+				<right parent="" anchor="right" offset="-20" />
+			</anchored>
+			<disabled />
+		</genericcontrol>
+	</template>
+
+	<template name="tabs_charsheet">
+		<buttongroup_tabs name="tabs">
+			<anchored width="18" height="92">
+				<top offset="50" />
+				<right offset="-9" />
+			</anchored>
+		</buttongroup_tabs>
+	</template>
+	<template name="tabs_recordsheet">
+		<buttongroup_tabs name="tabs">
+			<anchored width="18" height="92">
+				<top offset="80" />
+				<right offset="1" />
+			</anchored>
+		</buttongroup_tabs>
+	</template>
+	<template name="tabs_partysheet">
+		<buttongroup_tabs name="tabs">
+			<anchored width="18" height="92">
+				<top offset="50" />
+				<right offset="-8" />
+			</anchored>
+		</buttongroup_tabs>
+	</template>
+
+	<template name="resize_calendar">
+		<resize>
+			<anchored>
+				<right offset="-6" />
+				<bottom offset="-3" />
+			</anchored>
+		</resize>
+	</template>
+	<template name="resize_campaignlistwithtabs">
+		<resize>
+			<anchored>
+				<right offset="-8" />
+				<bottom offset="-10" />
+			</anchored>
+		</resize>
+	</template>
+	<template name="resize_referencepage">
+		<resize>
+			<anchored>
+				<right offset="-4" />
+				<bottom offset="-5" />
+			</anchored>
+		</resize>
+	</template>
+	<template name="resize_referencelist">
+		<resize>
+			<anchored>
+				<right offset="-5" />
+				<bottom offset="-5" />
+			</anchored>
+		</resize>
+	</template>
+	<template name="resize_utilitybox">
+		<resize>
+			<anchored>
+				<right offset="-6" />
+				<bottom offset="-3" />
+			</anchored>
+		</resize>
+	</template>
+	<template name="resize_utilitybox3">
+		<resize>
+			<anchored>
+				<right offset="-6" />
+				<bottom offset="-3" />
+			</anchored>
+		</resize>
+	</template>
+	<template name="resize_chatbox">
+		<resize>
+			<anchored>
+				<right offset="-2" />
+				<bottom offset="-8" />
+			</anchored>
+		</resize>
+	</template>
+	<template name="resize_charselect">
+		<resize>
+			<anchored>
+				<right offset="-6" />
+				<bottom offset="-3" />
+			</anchored>
+		</resize>
+	</template>
+	<template name="resize_charsheet">
+		<resize>
+			<anchored>
+				<right offset="-12" />
+				<bottom offset="-14" />
+			</anchored>
+		</resize>
+	</template>
+	<template name="resize_charsheethelper">
+		<resize>
+			<anchored>
+				<right offset="-12" />
+				<bottom offset="-14" />
+			</anchored>
+		</resize>
+	</template>
+	<template name="resize_recordsheet">
+		<resize>
+			<anchored>
+				<right offset="-4" />
+				<bottom offset="-5" />
+			</anchored>
+		</resize>
+	</template>
+	<template name="resize_storybox">
+		<resize>
+			<anchored>
+				<right offset="-6" />
+				<bottom offset="-7" />
+			</anchored>
+		</resize>
+	</template>
+	<template name="resize_imagebox">
+		<genericcontrol>
+			<anchored height="18" width="18">
+				<right offset="-25" />
+				<bottom offset="-27" />
+			</anchored>
+			<icon>window_resize_filled</icon>
+			<disabled />
+		</genericcontrol>
+	</template>
+	<template name="resize_ctbox">
+		<resize>
+			<anchored>
+				<right offset="-10" />
+				<bottom offset="-5" />
+			</anchored>
+		</resize>
+	</template>
+	<template name="resize_partysheet">
+		<resize>
+			<anchored>
+				<right offset="-14" />
+				<bottom offset="-14" />
+			</anchored>
+		</resize>
+	</template>
+
+	<template name="close">
+		<buttoncontrol>
+			<anchored height="24" width="24">
+				<top />
+				<right />
+			</anchored>
+			<icon normal="button_close" pressed="button_close_down" hover="button_close_hover" />
+			<script>
+				function onButtonPress()
+					window.close();
+				end
+			</script>
+		</buttoncontrol>
+	</template>
+	<template name="close_calendar">
+		<close>
+			<anchored>
+				<top offset="27" />
+				<right offset="0" />
+			</anchored>
+		</close>
+	</template>
+	<template name="close_campaignlist">
+		<close>
+			<anchored>
+				<top offset="2" />
+				<right offset="-5" />
+			</anchored>
+		</close>
+	</template>
+	<template name="close_referencepage">
+		<close>
+			<anchored>
+				<top offset="4" />
+				<right offset="-4" />
+			</anchored>
+		</close>
+	</template>
+	<template name="close_referencelist">
+		<close>
+			<anchored>
+				<top offset="26" />
+				<right offset="0" />
+			</anchored>
+		</close>
+	</template>
+	<template name="close_utilitybox">
+		<close>
+			<anchored>
+				<top offset="26" />
+				<right offset="-1" />
+			</anchored>
+		</close>
+	</template>
+	<template name="close_utilitybox2">
+		<close>
+			<anchored>
+				<top offset="4" />
+				<right offset="-14" />
+			</anchored>
+		</close>
+	</template>
+	<template name="close_utilitybox3">
+		<close>
+			<anchored>
+				<top offset="26" />
+				<right offset="-1" />
+			</anchored>
+		</close>
+	</template>
+	<template name="close_charsheet">
+		<close>
+			<anchored>
+				<top offset="24" />
+				<right offset="-9" />
+			</anchored>
+		</close>
+	</template>
+	<template name="close_charsheethelper">
+		<close>
+			<anchored>
+				<top offset="24" />
+				<right offset="-12" />
+			</anchored>
+		</close>
+	</template>
+	<template name="close_storybox">
+		<close>
+			<anchored>
+				<top offset="0" />
+				<right offset="0" />
+			</anchored>
+		</close>
+	</template>
+	<template name="close_imagebox">
+		<close>
+			<anchored>
+				<top offset="17" />
+				<right offset="-30" />
+			</anchored>
+		</close>
+	</template>
+	<template name="close_recordsheet">
+		<close>
+			<anchored>
+				<top offset="4" />
+				<right offset="-4" />
+			</anchored>
+		</close>
+	</template>
+	<template name="close_charselect">
+		<close>
+			<anchored>
+				<top offset="27" />
+				<right offset="0" />
+			</anchored>
+		</close>
+	</template>
+	<template name="close_ctbox">
+		<close>
+			<anchored>
+				<top offset="34" />
+				<right offset="-22" />
+			</anchored>
+		</close>
+	</template>
+	<template name="close_partysheet">
+		<close>
+			<anchored>
+				<top offset="24" />
+				<right offset="-9" />
+			</anchored>
+		</close>
+	</template>
+
+	<template name="help_calendar">
+		<help>
+			<anchored>
+				<top offset="27" />
+				<right offset="-22" />
+			</anchored>
+		</help>
+	</template>
+	<template name="help_ctbox">
+		<help>
+			<anchored>
+				<top offset="34" />
+				<right offset="-42" />
+			</anchored>
+		</help>
+	</template>
+	<template name="help_partysheet">
+		<help>
+			<anchored>
+				<top offset="24" />
+				<right offset="-28" />
+			</anchored>
+		</help>
+	</template>
+	<template name="help_utilitybox">
+		<help>
+			<anchored>
+				<top offset="27" />
+				<right offset="-26" />
+			</anchored>
+		</help>
+	</template>
+	<template name="help_utilitybox2">
+		<help>
+			<anchored>
+				<top offset="4" />
+				<right offset="-36" />
+			</anchored>
+		</help>
+	</template>
+	<template name="help_utilitybox3">
+		<help>
+			<anchored>
+				<top offset="26" />
+				<right offset="-20" />
+			</anchored>
+		</help>
+	</template>
+	<template name="help_charselect">
+		<help>
+			<anchored>
+				<top offset="27" />
+				<right offset="-22" />
+			</anchored>
+		</help>
+	</template>
+	<template name="help_referencelist">
+		<help>
+			<anchored>
+				<top offset="27" />
+				<right offset="-20" />
+			</anchored>
+		</help>
+	</template>
+</root>

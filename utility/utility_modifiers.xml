@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- 
+  Please see the license.html file included with this distribution for 
+  attribution and copyright information.
+  
+  line number(s) altered: 41,79
+-->
+
+<root>
+	<windowclass name="modifiers">
+		<frame>utilitybox3</frame>
+		<placement>
+			<size width="500" height="350" />
+		</placement>
+		<sizelimits>
+			<dynamic />
+			<minimum width="500" height="350" />
+		</sizelimits>
+		<playercontrol />
+		<nodelete />
+		<tooltip textres="library_recordtype_label_modifier" />
+		<sheetdata>
+			<windowtitlebar name="title">
+				<resource>library_recordtype_label_modifier</resource>
+			</windowtitlebar>
+			<anchor_title_utilitybox3 name="contentanchor" />
+			
+			<!-- Modifier keys -->
+			<genericcontrol name="buttonanchor">
+				<anchored to="contentanchor" width="150" height="0">
+					<top anchor="bottom" offset="20" />
+					<left />
+				</anchored>
+			</genericcontrol>
+
+			<!-- Attack -->
+			<label name="label_attack">
+				<anchored to="buttonanchor" position="below" />
+				<static textres="modifier_label_attack" />
+				<font>tableheader</font>
+				<center />
+			</label>
+			<button_modifierkey name="ATT_OPP">
+				<anchored to="buttonanchor" position="belowleft" offset="0,30" width="70" height="25" />
+				<textres>modifier_label_atkopp</textres>
+			</button_modifierkey>
+			<button_modifierkey name="DEF_COVER">
+				<anchored to="buttonanchor" position="belowright" offset="0,30" width="70" height="25" />
+				<textres>modifier_label_atkcover</textres>
+				<script>
+					function onValueChanged()
+						super.onValueChanged();
+						
+						if getValue() == 1 then
+							window["DEF_SCOVER"].setValue(0);
+						end
+					end
+				</script>
+			</button_modifierkey>
+			<button_modifierkey name="DEF_SCOVER">
+				<anchored to="buttonanchor" position="belowright" offset="0,65" width="70" height="25" />
+				<textres>modifier_label_atkscover</textres>
+				<script>
+					function onValueChanged()
+						super.onValueChanged();
+						
+						if getValue() == 1 then
+							window["DEF_COVER"].setValue(0);
+						end
+					end
+				</script>
+			</button_modifierkey>
+
+			<!-- Damage -->
+			<label name="label_damage">
+				<anchored to="buttonanchor" position="below" offset="0,100" />
+				<static textres="modifier_label_damage" />
+				<font>tableheader</font>
+				<center />
+			</label>
+			<button_modifierkey name="DMG_CRIT">
+				<anchored to="buttonanchor" position="belowleft" offset="0,130" width="70" height="25" />
+				<textres>modifier_label_dmgcrit</textres>
+			</button_modifierkey>
+			<button_modifierkey name="DMG_MAX">
+				<anchored to="buttonanchor" position="belowright" offset="0,130" width="70" height="25" />
+				<textres>modifier_label_dmgmax</textres>
+			</button_modifierkey>
+			<button_modifierkey name="DMG_HALF">
+				<anchored to="buttonanchor" position="belowright" offset="0,165" width="70" height="25" />
+				<textres>modifier_label_dmghalf</textres>
+			</button_modifierkey>
+			
+			<!-- Modifier List -->
+			<list_modifiers name="list" />
+			<scrollbar_list />
+
+			<anchor_campaign2 />
+			<button_iedit_campaign />
+			<button_iadd_utility />
+			<filter_utility />
+			
+			<resize_utilitybox3 />
+			<helper_modifiers />
+			<close_utilitybox3 />
+		</sheetdata>
+	</windowclass>
+</root>

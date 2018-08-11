@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- 
+  Please see the license.html file included with this distribution for 
+  attribution and copyright information.
+-->
+
+<root>
+	<icon name="DDlogo_5E" file="graphics/icons/DD_5E.png" />
+
+	<!-- Common -->
+	<icon name="question" file="graphics/icons/question.png" />
+	<icon name="button_arrowdown" file="graphics/buttons/button_arrowdown.png" />
+	<icon name="button_arrowdown_down" file="graphics/buttons/button_arrowdown_down.png" />
+	<icon name="arrowleft" file="graphics/icons/arrow_left.png" />
+	<icon name="arrowright" file="graphics/icons/arrow_right.png" />
+
+	<!-- Combat Tracker -->
+	<icon name="ct_active" file="graphics/icons/ct_active.png" />
+	<icon name="ct_passive" file="graphics/icons/ct_passive.png" />
+	
+	<!-- Character Sheet -->
+	<icon name="char_name" file="graphics/icons/empty.png" />	
+	<icon name="char_race" file="graphics/icons/empty.png" />
+	<icon name="char_background" file="graphics/icons/empty.png" />
+	<icon name="char_class" file="graphics/icons/empty.png" />
+	<icon name="char_stats" file="graphics/icons/empty.png" />
+	<icon name="char_defenses" file="graphics/icons/empty.png" />		
+	<icon name="char_init" file="graphics/icons/empty.png" />		
+	<icon name="char_attacks" file="graphics/icons/empty.png" />
+	<icon name="char_powers" file="graphics/icons/empty.png" />	
+	<icon name="char_senses" file="graphics/icons/empty.png" />		
+	<icon name="char_abilities" file="graphics/icons/empty.png" />
+	<icon name="char_abilities_red" file="graphics/icons/empty.png" />
+	<icon name="char_abilities_blue" file="graphics/icons/empty.png" />
+	<icon name="char_abilities_orange" file="graphics/icons/empty.png" />
+	<icon name="char_abilities_purple" file="graphics/icons/empty.png" />
+	<icon name="char_abilities_green" file="graphics/icons/empty.png" />
+	
+	<icon name="char_inventory" file="graphics/icons/empty.png" />		
+	<icon name="char_treasure" file="graphics/icons/empty.png" />		
+	<icon name="char_notes" file="graphics/icons/empty.png" />	
+
+	<icon name="minimized_char" file="graphics/icons/minimized_char.png" />
+	<icon name="minimized_charattacks" file="graphics/icons/minimized_charattacks.png" />
+	<icon name="minimized_charability" file="graphics/icons/minimized_charability.png" />
+	<icon name="minimized_charpowers" file="graphics/icons/minimized_charpowers.png" />
+	<icon name="minimized_charequipment" file="graphics/icons/minimized_charequipment.png" />
+	<icon name="minimized_charnotes" file="graphics/icons/minimized_charnotes.png" />
+
+	<!-- Local mode -->
+	<icon name="local_statrolled" file="graphics/icons/local_statrolled.png" />
+	<icon name="tabhorizontal" file="graphics/tabs/tabhorizontal.png" />
+	<icon name="button_statpointmode" file="graphics/buttons/button_statpointmode.png" />
+	<icon name="button_statpointmode_down" file="graphics/buttons/button_statpointmode_down.png" />
+
+	<!-- Powers -->
+	<icon name="power_weapon" file="graphics/icons/power_weapon.png" />
+	<icon name="power_casterspontaneous" file="graphics/icons/power_casterspontaneous.png" />
+	<icon name="power_casterprep" file="graphics/icons/power_casterprep.png" />
+	
+	<!-- Override CoreRPG ruleset graphics -->
+
+	<!-- Common -->
+	<icon name="window_resize_filled" file="graphics/icons/window_resize_filled.png" />
+	<icon name="tabtop" file="graphics/tabs/tabtop.png" />
+
+	<!-- Modifier Stack -->
+	<icon name="modcollector" file="graphics/icons/modcollector.png" />
+	
+	<!-- Portraits -->
+	<icon name="portrait_gm_token" file="graphics/portraits/portrait_gm_token.png" />
+</root>

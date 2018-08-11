@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- 
+  Please see the license.html file included with this distribution for 
+  attribution and copyright information.
+-->
+
+<root>
+	<!-- Library - Master Index -->
+	<template name="button_forge_item">
+		<button_text_sm>
+			<anchored to="buttonanchor" width="50">
+				<top />
+				<left anchor="right" relation="relative" offset="5" />
+			</anchored>
+			<state textres="item_button_forge" />
+			<script>
+				function onButtonPress()
+					Interface.openWindow("forge_magicitem", "forge.magicitem");
+				end
+			</script>
+		</button_text_sm>
+	</template>
+
+	<!-- Calendar -->
+	<template name="anchor_calendar">
+		<genericcontrol name="contentframe">
+			<anchored>
+				<top parent="contentanchor" anchor="bottom" relation="relative" offset="5" />
+				<left offset="10" />
+				<right offset="-10" />
+				<bottom offset="-25" />
+			</anchored>
+		</genericcontrol>
+	</template>
+	<template name="anchor_calendarlog">
+		<genericcontrol>
+			<anchored height="0">
+				<top parent="title" anchor="bottom" offset="0" />
+				<left parent="" anchor="left" offset="30" />
+				<right parent="" anchor="right" offset="-30" />
+			</anchored>
+			<disabled />
+		</genericcontrol>
+	</template>
+	
+	<!-- Library - Master Index -->
+	<template name="masterindex_anchor_bottom">
+		<genericcontrol>
+			<anchored height="0">
+				<bottom offset="-25" />
+				<left parent="" anchor="left" offset="35" />
+				<right parent="" anchor="right" offset="-40" />
+			</anchored>
+			<disabled />
+		</genericcontrol>
+	</template>
+
+	<!-- Modifiers -->
+	<template name="list_modifiers">
+		<list_utility>
+			<anchored to="contentanchor">
+				<top anchor="bottom" relation="relative" offset="20" />
+				<left offset="175" />
+				<right offset="-10" />
+				<bottom parent="" offset="-75" />
+			</anchored>
+			<frame name="groupbox" offset="15,15,20,15" />
+			<datasource>.</datasource>
+			<class>modifiersmall</class>
+			<script>
+				function onDrop(x, y, draginfo)
+					if User.isHost() then
+						if draginfo.getType() == "number" then
+							local w = addEntry(true);
+							if w then
+								w.label.setValue(draginfo.getDescription());
+								w.bonus.setValue(draginfo.getNumberData());
+							end
+							return true;
+						end
+					end
+				end
+			</script>
+		</list_utility>
+	</template>
+
+	<!-- Options -->
+	<template name="list_options">
+		<windowlist>
+			<anchored to="contentanchor">
+				<top anchor="bottom" relation="relative" offset="20" />
+				<left offset="5" />
+				<right offset="-10" />
+				<bottom parent="" offset="-80" />
+			</anchored>
+			<frame name="groupbox" offset="15,15,20,15" />
+			<class>options_group</class>
+			<skipempty />
+			<sortby>
+				<control>sort</control>
+				<control>label</control>
+			</sortby>
+		</windowlist>
+	</template>
+	
+	<!-- Overwrite CoreRPG -->
+	<template name="label_effects_custom">
+		<label name="label_custom">
+			<anchored to="contentanchor" height="20">
+				<top anchor="bottom" />
+				<left offset="195" />
+				<right offset="-10" />
+			</anchored>
+			<static textres="effect_label_custom" />
+			<font>tableheader</font>
+			<center />
+		</label>
+	</template>
+	<template name="label_effects_conditions">
+		<label name="label_conditions">
+			<anchored to="contentanchor" width="170" height="20">
+				<top anchor="bottom"/>
+				<left />
+			</anchored>
+			<static textres="effect_label_conditions" />
+			<font>tableheader</font>
+			<center />
+		</label>
+	</template>
+	
+	</root>

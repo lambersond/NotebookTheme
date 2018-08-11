@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- 
+  Please see the license.html file included with this distribution for 
+  attribution and copyright information.
+-->
+
+<root>
+	<template name="windowtitlebar_char">
+		<windowtitlebar>
+			<bounds merge="replace">0,10,-1,40</bounds>
+			<field>name</field>
+			<font>subwindowtitle</font>
+			<script>
+				function setValue(sTitle)
+					if widgetTitle then
+						if prefix then
+							sTitle = Interface.getString(prefix[1]) .. " - " .. sTitle;
+						end
+						widgetTitle.setText(sTitle);
+						updatePosition();
+					end
+				end
+			</script>
+		</windowtitlebar>
+	</template>
+
+	<template name="subwindow_charcontents">
+		<subwindow name="contents">
+			<anchored>
+				<top offset="45" />
+				<bottom offset="-25" />
+				<left offset="15" />
+				<right offset="-30" />
+			</anchored>
+			<activate />
+			<fastinit />
+		</subwindow>
+	</template>
+	<template name="scrollbar_charcontents">
+		<scrollbar>
+			<anchored to="contents" offset="-5,-10"/>
+			<target>contents</target>
+		</scrollbar>
+	</template>
+
+	<template name="label_charframetop">
+		<metalplate>
+			<frame name="metalplate" offset="10,2,10,2"/>
+			<font>subwindowsmalltitle</font>
+			<center />
+			<nodrag />
+			<readonly />
+			<script file="campaign/scripts/char_labelframetop.lua" />
+		</metalplate>
+	</template>
+	<template name="string_charframetop">	
+		<stringfield>
+			<anchored position="insidetop" />
+			<font>subwindowsmalltitle</font>
+			<center />
+			<nodrag/>
+			<readonly />
+		</stringfield>
+	</template>
+
+	<template name="label_charfieldtop">
+		<label>
+			<anchored position="above" offset="0,3" />
+			<font>subwindowsmalltitle</font>
+			<center />
+		</label>
+	</template>
+	<template name="number_chartotal">
+		<number_modifier>
+			<frame name="fieldlight" offset="7,5,7,5" />
+			<showemptywidget />
+		</number_modifier>
+	</template>
+
+	<template name="cycler_ability">
+		<button_stringcycler>
+			<parameters>
+				<defaultlabelres mergerule="replace">dash</defaultlabelres>
+				<labelsres>str|dex|con|int|wis|cha</labelsres>
+				<values>strength|dexterity|constitution|intelligence|wisdom|charisma</values>
+			</parameters>
+		</button_stringcycler>
+	</template>
+	<template name="cycler_abilitybase">
+		<cycler_ability>
+			<parameters>
+				<defaultlabelres mergerule="replace">base</defaultlabelres>
+			</parameters>
+		</cycler_ability>
+	</template>
+	
+	<template name="number_charlevel">
+		<simplenumber>
+			<readonly />
+			<script>
+				function onInit()
+					update();
+					local node = window.getDatabaseNode();
+					DB.addHandler(DB.getPath(node, "classes.*.level"), "onUpdate", update);
+					DB.addHandler(DB.getPath(node, "classes"), "onChildDeleted", update);
+				end
+				function onClose()
+					local node = window.getDatabaseNode();
+					DB.removeHandler(DB.getPath(node, "classes.*.level"), "onUpdate", update);
+					DB.removeHandler(DB.getPath(node, "classes"), "onChildDeleted", update);
+				end
+				function update()
+					local nLevel = 0;
+					for _,v in pairs(DB.getChildren(window.getDatabaseNode(), "classes")) do
+						nLevel = nLevel + DB.getValue(v, "level", 0);
+					end
+					setValue(nLevel);
+				end
+			</script>
+		</simplenumber>
+	</template>
+	<template name="stringc_charclasslevel">
+		<stringcontrol>
+			<anchored height="20" />
+			<font>sheettext</font>
+			<lineoffset default="on" mergerule="replace">1</lineoffset>
+			<readonly />
+			<script>
+				function onInit()
+					update();
+					DB.addHandler(DB.getPath(window.getDatabaseNode(), "classes"), "onChildUpdate", update);
+				end
+				
+				function onClose()
+					DB.removeHandler(DB.getPath(window.getDatabaseNode(), "classes"), "onChildUpdate", update);
+				end
+				
+				function update()
+					setValue(CharManager.getClassLevelSummary(window.getDatabaseNode()));
+				end
+
+				function onClickDown(button, x, y)
+					return true;
+				end
+
+				function onClickRelease(button, x, y)
+					Interface.openWindow("charsheet_classes", window.getDatabaseNode());
+				end
+			</script>
+		</stringcontrol>
+	</template>
+	<template name="button_charclasslevel">
+		<buttoncontrol>
+			<anchored width="20" height="20" />
+			<state icon="button_details" pressed="button_details_down" />
+			<script>
+				function onButtonPress()
+					Interface.openWindow("charsheet_classes", window.getDatabaseNode());
+				end
+			</script>
+		</buttoncontrol>
+	</template>
+	<template name="number_charabilityscore">
+		<number_abilityscore>
+			<anchored to="statstitle" width="40" height="30">
+				<top anchor="bottom" relation="relative" offset="18" />
+				<left anchor="center" offset="-20" />
+			</anchored>
+			<rollable />
+		</number_abilityscore>
+	</template>
+	<template name="label_chardefense">
+		<label_fieldtop>
+			<anchored offset="-4,-4" />
+			<frame name="abilityscore" />
+			<font>sheetlabelmini</font>
+		</label_fieldtop>
+	</template>
+	<template name="number_charabilitysave">
+		<number_chartotal>
+			<anchored to="savestitle" width="40" height="30">
+				<top anchor="bottom" relation="relative" offset="18" />
+				<left anchor="center" offset="-20" />
+			</anchored>
+			<rollable />
+			<displaysign />
+			<modifiersize>miniplus</modifiersize> <!---->
+			<script>
+				function onInit()
+					addSourceWithOp("abilities." .. target[1] .. ".bonus", "+");
+					addSource("abilities." .. target[1] .. ".saveprof");
+					addSource("profbonus");
+					super.onInit();
+				end
+
+				function onSourceUpdate()
+					local nValue = calculateSources();
+
+					local node = window.getDatabaseNode();
+					if DB.getValue(node, "abilities." .. target[1] .. ".saveprof", 0) == 1 then
+						nValue = nValue + DB.getValue(node, "profbonus", 0);
+					end
+					
+					setValue(nValue);
+				end
+				
+				function action(draginfo)
+					local rActor = ActorManager.getActor("pc", window.getDatabaseNode());
+					ActionSave.performRoll(draginfo, rActor, self.target[1]);
+
+					return true;
+				end
+				
+				function onDragStart(button, x, y, draginfo)
+					return action(draginfo);
+				end
+					
+				function onDoubleClick(x,y)
+					return action();
+				end
+			</script>
+		</number_chartotal>
+	</template>
+	<template name="button_charcombatcalc">
+		<buttoncontrol>
+			<anchored width="20" height="20" />
+			<state icon="button_details" pressed="button_details_down" />
+			<script>
+				function onButtonPress()
+					Interface.openWindow("charsheet_combatcalc", window.getDatabaseNode());
+				end
+			</script>
+		</buttoncontrol>
+	</template>
+	<template name="number_charmain_skill_passive">
+		<number_chartotal>
+			<anchored width="30" height="20" />
+			<modifiersize>miniplus</modifiersize>
+			<script>
+				local nodeSkill = nil;
+				
+				function onInit()
+					local nodeChar = window.getDatabaseNode();
+					local sSkill = Interface.getString(skill[1]);
+					
+					for _,vSkill in pairs(DB.getChildren(nodeChar, "skilllist")) do
+						if DB.getValue(vSkill, "name", "") == sSkill then
+							nodeSkill = vSkill;
+						end
+					end
+					if not nodeSkill and DataCommon.skilldata[sSkill] then
+						local t = DataCommon.skilldata[sSkill];
+						local nodeSkillList = DB.createChild(nodeChar, "skilllist");
+						nodeSkill = DB.createChild(nodeSkillList);
+						
+						DB.setValue(nodeSkill, "name", "string", sSkill);
+						DB.setValue(nodeSkill, "stat", "string", t.stat or "");
+					end
+					
+					if nodeSkill then
+						DB.addHandler(DB.getPath(nodeChar, "abilities.*.score"), "onUpdate", onSourceUpdate);
+						DB.addHandler(DB.getPath(nodeChar, "profbonus"), "onUpdate", onSourceUpdate);
+						DB.addHandler(nodeSkill.getNodeName(), "onChildUpdate", onSourceUpdate);
+						super.hasSources = true;
+					end
+	
+					super.onInit();
+				end
+				
+				function onClose()
+					if nodeSkill then
+						local nodeChar = window.getDatabaseNode();
+						DB.removeHandler(DB.getPath(nodeChar, "abilities.*.score"), "onUpdate", onSourceUpdate);
+						DB.removeHandler(DB.getPath(nodeChar, "profbonus"), "onUpdate", onSourceUpdate);
+						DB.removeHandler(nodeSkill.getNodeName(), "onChildUpdate", onSourceUpdate);
+					end
+				end
+				
+				function onSourceUpdate()
+					local nValue = 10 + calculateSources() + DB.getValue(nodeSkill, "misc", 0);
+					
+					local nodeChar = window.getDatabaseNode();
+					
+					local sAbility = DB.getValue(nodeSkill, "stat", "");
+					if sAbility ~= "" then
+						local nScore = DB.getValue(nodeChar, "abilities." .. sAbility .. ".score", 0)
+						nValue = nValue + math.floor((nScore - 10) / 2);
+					end
+					
+					local nProf = DB.getValue(nodeSkill, "prof", 0);
+					if nProf == 1 then
+						nValue = nValue + DB.getValue(nodeChar, "profbonus", 0);
+					elseif nProf == 2 then
+						nValue = nValue + (2 * DB.getValue(nodeChar, "profbonus", 0));
+					elseif nProf == 3 then
+						nValue = nValue + math.floor(DB.getValue(nodeChar, "profbonus", 0) / 2);
+					end
+					
+					setValue(nValue);
+				end
+			</script>
+		</number_chartotal>
+	</template>
+	<template name="button_charhealthcalc">
+		<buttoncontrol>
+			<anchored width="20" height="20" />
+			<state icon="button_details" pressed="button_details_down" />
+			<script>
+				function onButtonPress()
+					Interface.openWindow("charsheet_healthcalc", window.getDatabaseNode());
+				end
+			</script>
+		</buttoncontrol>
+	</template>
+
+	<template name="button_prof">
+		<buttonfield>
+			<state icon="button_prof" tooltipres="char_tooltip_prof_off" />
+			<state icon="button_prof_down" tooltipres="char_tooltip_prof_on" />
+		</buttonfield>
+	</template>
+	<template name="button_saveprof">
+		<button_prof>
+			<anchored position="insidebottomright" offset="-6,-2" width="12" height="12" />
+		</button_prof>
+	</template>
+	<template name="button_armorprof">
+		<button_prof>
+			<anchored position="insidebottomright" offset="-4,0" width="12" height="12" />
+			<default>1</default>
+		</button_prof>
+	</template>
+	<template name="button_weaponprof">
+		<button_prof>
+			<anchored position="insidebottomright" offset="0,2" width="12" height="12" />
+			<default>1</default>
+		</button_prof>
+	</template>
+	<template name="button_skillprof">
+		<buttonfield>
+			<anchored width="12" height="12" />
+			<state icon="button_prof" tooltipres="char_tooltip_prof_off" />
+			<state icon="button_prof_down" tooltipres="char_tooltip_prof_on" />
+			<state icon="button_prof_double" tooltipres="char_tooltip_prof_double" />
+			<state icon="button_prof_half" tooltipres="char_tooltip_prof_half" />
+		</buttonfield>
+	</template>
+	
+	<template name="number_chartotalnomod">
+		<number_linked>
+			<frame name="fieldlight" offset="7,5,7,5" />
+			<nodrag />
+			<hideonvalue>0</hideonvalue>
+			<displaysign />
+		</number_linked>
+	</template>
+	<template name="number_chartotalac">
+		<number_chartotal>
+			<description textres="armorclass" />
+			<font>reference-b-large</font>
+			<modifiersize>miniplus</modifiersize>
+			<modifierfield>defenses.ac.temporary</modifierfield>
+			<source><name>defenses.ac.armor</name><op>+</op></source>
+			<source><name>defenses.ac.shield</name><op>+</op></source>
+			<source><name>defenses.ac.misc</name><op>+</op></source>
+			<source><string /><name>defenses.ac.dexbonus</name></source>
+			<source><string /><name>defenses.ac.stat2</name></source>
+			<script>
+				function onInit()
+					super.onInit();
+					DB.addHandler(DB.getPath(window.getDatabaseNode(), "abilities"), "onChildUpdate", onSourceUpdate);
+				end
+				
+				function onClose()
+					DB.removeHandler(DB.getPath(window.getDatabaseNode(), "abilities"), "onChildUpdate", onSourceUpdate);
+				end
+				
+				function onSourceUpdate()
+					local rActor = ActorManager.getActor("pc", window.getDatabaseNode());
+					
+					local nDexBonus = ActorManager2.getAbilityBonus(rActor, "dexterity");
+					local sDexBonus = sources["defenses.ac.dexbonus"].getValue();
+					if sDexBonus == "max2" then
+						nDexBonus = math.min(nDexBonus, 2);
+					elseif sDexBonus == "max3" then
+						nDexBonus = math.min(nDexBonus, 3);
+					elseif sDexBonus == "no" then
+						nDexBonus = 0;
+					end
+					
+					local nStatBonus2 = 0;
+					local sStat2 = sources["defenses.ac.stat2"].getValue();
+					if sStat2 ~= "" then
+						nStatBonus2 = ActorManager2.getAbilityBonus(rActor, sStat2);
+					end
+
+					setValue(10 + calculateSources() + nDexBonus + nStatBonus2);
+				end
+			</script>
+		</number_chartotal>
+	</template>
+	<template name="number_charwounds">
+		<basicnumber>
+			<min value="0" />
+			<hideonvalue value="0" />
+			<script>
+				function onInit()
+					if super.onInit then
+						super.onInit();
+					end
+
+					OptionsManager.registerCallback("WNDC", onValueChanged);
+					onValueChanged();
+				end
+
+				function onClose()
+					OptionsManager.unregisterCallback("WNDC", onValueChanged);
+				end
+
+				function onDrop(x, y, draginfo)
+					if draginfo.getType() == "number" then
+						local rActor = ActorManager.getActor("pc", window.getDatabaseNode());
+						ActionDamage.applyDamage(nil, rActor, false, draginfo.getDescription(), draginfo.getNumberData());
+					end
+
+					return true;
+				end
+
+				function onValueChanged()
+					if window.onHealthChanged then
+						window.onHealthChanged();
+					end
+				end
+			</script>
+		</basicnumber>
+	</template>
+	<template name="number_charinit">
+		<number_chartotal>
+			<font>reference-b-large</font>
+			<rollable />
+			<displaysign />
+			<modifiersize>miniplus</modifiersize>
+			<modifierfield>initiative.temporary</modifierfield>
+			<source><name>initiative.misc</name><op>+</op></source>
+			<source><name>abilities.dexterity.bonus</name><op>+</op></source>
+			<script>
+				function action(draginfo)
+					local rActor = ActorManager.getActor("pc", window.getDatabaseNode());
+					ActionInit.performRoll(draginfo, rActor);
+
+					return true;
+				end
+				
+				function onDragStart(button, x, y, draginfo)
+					return action(draginfo);
+				end
+					
+				function onDoubleClick(x,y)
+					return action();
+				end
+			</script>
+		</number_chartotal>
+	</template>
+	<template name="number_charspeed">
+		<number_chartotal>
+			<font>reference-b-large</font>
+			<modifierfield>speed.temporary</modifierfield>
+			<modifiersize>miniplus</modifiersize>
+			<description textres="char_tooltip_speed" />
+			<source><name>speed.base</name><op>+</op></source>
+			<source><name>speed.armor</name><op>+</op></source>
+			<source><name>speed.misc</name><op>+</op></source>
+		</number_chartotal>
+	</template>
+	
+	<template name="list_charweapon">
+		<windowlist>
+			<datasource>.weaponlist</datasource>
+			<sortby><control>name</control></sortby>
+			<allowcreate />
+			<allowdelete />
+			<script file="campaign/scripts/char_weaponlist.lua" />
+		</windowlist>
+	</template>
+	<template name="state_charweapontype">
+		<buttonfield>
+			<anchored width="25" height="25" />
+			<state icon="char_weapon_melee" tooltipres="char_tooltip_weapontypemelee" />
+			<state icon="char_weapon_ranged" tooltipres="char_tooltip_weapontyperanged" />
+			<state icon="char_weapon_thrown" tooltipres="char_tooltip_weapontypethrown" />
+		</buttonfield>
+	</template>
+	<template name="state_charammocounter">
+		<buttongroup_counter>
+			<sourcefields>
+				<maximum>maxammo</maximum>
+				<current>ammo</current>
+			</sourcefields>
+		</buttongroup_counter>
+	</template>
+
+	<template name="list_abilities">
+		<list_text>
+			<child></child>
+			<child><backcolor>1A40301E</backcolor></child>
+			<allowcreate />
+			<allowdelete />
+			<sortby mergerule="replace"><control>name</control></sortby>
+			<noscroll />
+			<script>
+				function onListChanged()
+					update();
+					if listheader and listheader[1] and not isVisible() then
+						window[listheader[1]].expand();
+					end
+				end
+
+				function update()
+					local bEdit = (window.parentcontrol.window.actions_iedit.getValue() == 1);
+					for _,w in ipairs(getWindows()) do
+						w.idelete.setVisibility(bEdit);
+					end
+				end
+
+				function addEntry(bFocus)
+					local w = createWindow();
+					if bFocus then
+						w.name.setFocus();
+					end
+					return w;
+				end
+			</script>
+		</list_text>
+	</template>
+
+	<template name="button_char_skills_iedit">
+		<buttoncontrol>
+			<anchored width="20" height="20" />
+			<state icon="button_edit" tooltipres="button_editon" />
+			<state icon="button_edit_down" tooltipres="button_editoff" />
+			<script>
+				function onInit()
+					local node = window.getDatabaseNode();
+					if not node or node.isReadOnly() then
+						setVisible(false);
+					end
+				end
+				
+				function onValueChanged()
+					window.contents.subwindow.skills_iadd.setVisible(getValue() == 1);
+					window.contents.subwindow.skills.update();
+				end
+			</script>
+		</buttoncontrol>
+	</template>
+	<template name="number_charskill">
+		<basicnumber>
+			<anchored width="32" height="20" />
+			<delaykeyupdate />
+			<hideonvalue>0</hideonvalue>
+			<nodrag />
+			<displaysign />
+		</basicnumber>
+	</template>
+	<template name="number_charskilltotal">
+		<number_linked>
+			<anchored width="32" height="20" />
+			<frame name="fieldlight" offset="7,5,7,5" />
+			<rollable />
+			<displaysign />
+			<script>
+				function onInit()
+					local nodeChar = window.getDatabaseNode().getChild("...");
+					DB.addHandler(DB.getPath(nodeChar, "abilities.*.score"), "onUpdate", onSourceUpdate);
+					DB.addHandler(DB.getPath(nodeChar, "profbonus"), "onUpdate", onSourceUpdate);
+
+					addSource("stat", "string");
+					addSource("prof");
+					addSourceWithOp("misc", "+");
+
+					super.onInit();
+				end
+				
+				function onClose()
+					local nodeChar = window.getDatabaseNode().getChild("...");
+					DB.removeHandler(DB.getPath(nodeChar, "abilities.*.score"), "onUpdate", onSourceUpdate);
+					DB.removeHandler(DB.getPath(nodeChar, "profbonus"), "onUpdate", onSourceUpdate);
+				end
+
+				function onSourceUpdate(node)
+					local nValue = calculateSources();
+
+					local nodeSkill = window.getDatabaseNode();
+					local nodeChar = nodeSkill.getChild("...");
+
+					local sAbility = DB.getValue(nodeSkill, "stat", "");
+					if sAbility ~= "" then
+						local nScore = DB.getValue(nodeChar, "abilities." .. sAbility .. ".score", 0)
+						nValue = nValue + math.floor((nScore - 10) / 2);
+					end
+					
+					local nProf = DB.getValue(nodeSkill, "prof", 0);
+					if nProf == 1 then
+						nValue = nValue + DB.getValue(nodeChar, "profbonus", 0);
+					elseif nProf == 2 then
+						nValue = nValue + (2 * DB.getValue(nodeChar, "profbonus", 0));
+					elseif nProf == 3 then
+						nValue = nValue + math.floor(DB.getValue(nodeChar, "profbonus", 0) / 2);
+					end
+					
+					setValue(nValue);
+				end
+				
+				function action(draginfo)
+					local nodeSkill = window.getDatabaseNode();
+					local nodeChar = nodeSkill.getChild("...");
+					local rActor = ActorManager.getActor("pc", nodeChar);
+
+					ActionSkill.performRoll(draginfo, rActor, nodeSkill);
+
+					return true;
+				end
+				
+				function onDragStart(button, x, y, draginfo)
+					return action(draginfo);
+				end
+					
+				function onDoubleClick(x,y)
+					return action();
+				end
+			</script>
+		</number_linked>
+	</template>
+
+	<template name="list_charinv">
+		<windowlist>
+			<child></child>
+			<child><backcolor>1A40301E</backcolor></child>
+			<datasource>.inventorylist</datasource>
+			<class>char_invitem</class>
+			<allowdelete />
+			<script file="campaign/scripts/char_invlist.lua" />
+		</windowlist>
+	</template>
+	
+	<template name="string_char_background">
+		<stringu>
+			<multilinespacing>20</multilinespacing>
+			<script>
+				function onDrop(x, y, draginfo)
+					if draginfo.isType("shortcut") then
+						local sClass = draginfo.getShortcutData();
+						if sClass == "reference_tableresult" then
+							local node = draginfo.getDatabaseNode();
+							local sNew = DB.getValue(node, "result", "");
+							if sNew ~= "" then
+								local aMerge = { };
+								local sOld = getValue();
+								if sOld ~= "" then
+									table.insert(aMerge, sOld);
+								end
+								table.insert(aMerge, sNew);
+								setValue(table.concat(aMerge, ";\n"));
+							end
+							return true;
+						end
+					end
+				end
+			</script>
+		</stringu>
+	</template>
+</root>

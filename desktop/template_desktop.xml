@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- 
+  Please see the license.html file included with this distribution for 
+  attribution and copyright information.
+-->
+
+<root>
+	<template name="button_modifierkey">
+		<buttoncontrol>
+			<state frame="buttonup" frameoffset="5,5,5,5" />
+			<state frame="buttondown" frameoffset="5,5,5,5" offset="1,1" />
+			<font>button-white</font>
+			<script>
+				local bInit = false;
+				function onInit()
+					if ModifierStack.getModifierKey(getName()) then
+						setValue(1);
+					end
+					bInit = true;
+				end
+				function onValueChanged()
+					if bInit then
+						if getValue() ~= 0 then
+							ModifierStack.setModifierKey(getName(), true);
+						else
+							ModifierStack.setModifierKey(getName(), false);
+						end
+					end
+				end
+			</script>
+		</buttoncontrol>
+	</template>
+
+	<template name="identitylist_entry">
+		<genericcontrol>
+			<anchored to="anchor" width="70" height="16">
+				<left anchor="right" relation="relative" offset="3" />
+				<top offset="2" />
+			</anchored>
+			<frame name="mini_name" />
+			<script file="desktop/scripts/identitylist_entry.lua" />
+		</genericcontrol>
+	</template>
+	
+	<template name="characterlist_entry">
+		<genericcontrol>
+			<anchored to="anchor" width="75" height="75">
+				<left anchor="right" relation="relative" offset="3" />
+				<top />
+			</anchored>
+			<script file="desktop/scripts/characterlist_entry.lua" />
+		</genericcontrol>
+	</template>
+
+	<template name="chatentry_step">
+		<chatentry name="entry">
+			<anchored>
+				<sizelimits>
+					<maximum height="190" />
+				</sizelimits>
+			</anchored>
+			<frame name="chatentry" offset="2,2,28,-1" />
+			<multilinespacing>20</multilinespacing>
+			<chatwindow>chat</chatwindow>
+			<font>chatfont</font>
+			<script file="desktop/scripts/chat_entry.lua" />
+		</chatentry>
+	</template>
+	<template name="basicchatentry">
+		<chatentry_step>
+			<anchored position="insidebottomleft" offset="22,18" >
+				<right offset="-63" />
+				<left offset="30" />
+				<sizelimits>
+					<maximum height="160" />
+				</sizelimits>
+			</anchored>
+		</chatentry_step>
+	</template>
+	<template name="basicchatentryscroll">
+		<scrollbar name="entryscroll">
+			<anchored to="entry">
+				<top offset="12" />
+				<bottom offset="-35" />
+				<left anchor="right" offset="28" />
+			</anchored>
+			<target>entry</target>
+		</scrollbar>
+	</template>
+	<template name="basicchatentrymode">
+		<genericcontrol name="mode">
+			<anchored to="entry" position="rightlow" offset="-14,0" width="40" height="24" />
+			<icon>chat_speak</icon>
+			<script file="desktop/scripts/chat_mode.lua" />
+		</genericcontrol>
+	</template>
+	<template name="chatwindow_step">
+		<chatwindow name="chat">
+			<modeframe mode="chat" name="chatframe_chat" offset="15,5,5,5" />
+			<modeframe mode="story" name="chatframe_story" offset="15,10,15,10" />
+			<modeframe mode="whisper" name="chatframe_whisper" offset="15,5,5,5" />
+			<linkcolor>0000FF</linkcolor>
+			<linkicon normal="button_link" pressed="button_link_down" />
+			<droptypes>
+				<type>dice</type>
+				<type>number</type>
+				<type>string</type>
+			</droptypes>
+			<script file="desktop/scripts/chat_window.lua" />
+		</chatwindow>
+	</template>
+	<template name="basicchatwindow">
+		<chatwindow_step name="chat">
+			<anchored position="insidetopleft" offset="20,25">
+				<left offset="27" />
+				<right offset="-38" />
+				<bottom parent="entry" anchor="top" relation="relative" offset="-17" />
+			</anchored>
+			<stateframe>
+				<drophilight name="chatboxhilight" offset="0,11,4,12" />
+			</stateframe>
+		</chatwindow_step>
+	</template>
+	<template name="basicchatwindowscroll">
+		<scrollbar name="chatscroll">
+			<anchored to="chat" offset="17,0,0,0" />
+			<target>chat</target>
+		</scrollbar>
+	</template>
+	<template name="basicchatwindowstatus">
+		<genericcontrol name="chatstatus">
+			<anchored to="chat" position="insidetopright" width="60" height="61" offset="-15,-20,0,0" />
+			<icon>chat_wait</icon>
+			<invisible />
+			<script>
+				function onUserStateChange(username, statename, state)
+					if username == "" then
+						if statename == "typing" then
+							setVisible(true);
+						elseif statename == "active" or statename == "idle" then
+							setVisible(false);
+						end
+					end
+				end
+			
+				function onInit()
+					User.onUserStateChange = onUserStateChange;
+				end
+			</script>
+		</genericcontrol>
+	</template>
+	
+	<template name="chat_resize">
+		<resize_chatbox>
+			<script>
+				function onInit()
+					updateVisibility();
+					window.onLockChanged = updateVisibility;
+				end
+				
+				function updateVisibility()
+					setVisible(not window.getLockState());
+				end
+			</script>
+		</resize_chatbox>
+	</template>
+	
+	<template name="desktop_stackitem">	
+		<windowreferencecontrol>
+			<bounds>0,0,47,27</bounds>
+			<nodrag />
+			<noreset />
+			<closetoggle />
+		</windowreferencecontrol>
+	</template>
+
+	<template name="desktop_dockitem">	
+		<windowreferencecontrol>
+			<bounds>0,0,100,95</bounds>
+			<nodrag />
+			<noreset />
+			<closetoggle />
+		</windowreferencecontrol>
+	</template>
+</root>

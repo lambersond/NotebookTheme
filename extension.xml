@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<root version="3.0" release="8" logo="logo.png">
+	<announcement text="Notebook paper theme\rBy Dailies and Dungeons\rCopyright 2015 Smiteworks USA, LLC" font="emotefont" icon="DDlogo_5E" />
+
+	<!-- Attributes -->
+	<properties>
+		<name>5E Theme - Notebook paper</name>
+		<version>1.0.2</version>
+		<description>Notebook paper theme - 4 August 2018</description>
+		<ruleset>
+			<name>5E</name>
+		</ruleset>
+		<loadorder>40</loadorder>
+	</properties>
+
+	<base><!-- Layers -->
+		<includefile source="gameelements.xml" />
+		
+		<includefile source="ct\template_ct.xml" />
+		
+		<includefile source="ps\template_ps.xml" />
+		
+		<includefile source="utility\utility_modifiers.xml" />
+		<includefile source="utility\utility_library.xml" />
+		<includefile source="utility\template_utility.xml" />
+		
+		<includefile source="graphics\graphics_fonts.xml" />
+		<includefile source="graphics\graphics_buttons.xml" />
+		<includefile source="graphics\graphics_icons.xml" />
+		<includefile source="graphics\graphics_frames.xml" />
+		<includefile source="desktop\desktop_panels.xml" />
+		<includefile source="desktop\desktop_classes.xml" />
+		<includefile source="desktop\template_desktop.xml" />
+		<includefile source="campaign\template_campaign.xml" />
+		<includefile source="campaign\template_char.xml" />
+		
+		<includefile source="common\template_common.xml" />
+		<includefile source="common\template_records.xml" />
+		<includefile source="common\template_windows.xml" />
+		
+	</base>
+</root>

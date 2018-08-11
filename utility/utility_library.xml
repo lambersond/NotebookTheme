@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- 
+  Please see the license.html file included with this distribution for 
+  attribution and copyright information.
+-->
+
+<root>
+	<windowclass name="library_recordtype">
+		<sizelimits>
+			<minimum height="34" />
+		</sizelimits>
+		<script file="utility/scripts/library_recordtype.lua" />
+		<script>
+		</script>
+		<sheetdata>
+			<genericcontrol name="icon">
+				<anchored position="insidetopleft" offset="2,2" width="30" height="30" />
+				<disabled />
+			</genericcontrol>
+			<stringcontrol name="name">
+				<anchored position="insidetopleft" offset="40,7">
+					<right offset="-25" />
+				</anchored>
+				<font>reference-r</font>
+				<multilinespacing>20</multilinespacing>
+				<disabled />
+			</stringcontrol>
+			
+			<buttoncontrol name="base">
+				<anchored position="insidetopleft">
+					<right />
+					<bottom />
+				</anchored>
+				<description control="name" />
+				<script>
+					function onButtonPress()
+						DesktopManager.toggleIndex(window.getRecordType());
+					end
+				</script>
+			</buttoncontrol>
+
+			<buttonc_checkbox name="sidebar">
+				<anchored height="20" width="20">
+					<top anchor="center" offset="-10" />
+					<right offset="-10" />
+				</anchored>
+				<script>
+					function onValueChanged()
+						window.onOptionChanged();
+					end
+				</script>
+			</buttonc_checkbox>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="library_booklistcategory">
+		<margins control="0,0,0,2" />
+		<frame>rowshade</frame>
+		<sheetdata>
+			<stringcontrol name="name">
+				<bounds>5,2,-1,24</bounds>
+				<font>reference-bi</font>
+				<static />
+			</stringcontrol>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="library_booklistentry">
+		<margins control="0,0,0,7" />
+		<sizelimits>
+			<minimum height="70" />
+		</sizelimits>
+		<script>
+			function onInit()
+				local sModule = getDatabaseNode().getModule();
+				local info = Module.getModuleInfo(sModule);
+				name.setValue(info.displayname or info.name);
+				thumbnail.setIcon("module_" .. sModule);
+			end
+			
+			function activate()
+				local pagesource = DB.getChild(getDatabaseNode(), "entries");
+				windowlist.window.pagelist.setDatabaseNode(pagesource);
+			end
+		</script>
+		<sheetdata>
+			<hsc name="category" />
+			
+			<buttoncontrol name="base">
+				<anchored position="over" />
+				<script>
+					function onHover(bOnControl)
+						window.name.setUnderline(bOnControl);
+						if bOnControl then
+							window.setFrame("fieldfocus");
+						else
+							window.setFrame("");
+						end
+					end
+					
+					function onButtonPress()
+						window.activate();
+						return true;
+					end
+				</script>
+			</buttoncontrol>
+			<genericcontrol name="thumbnail">
+				<bounds>7,7,63,63</bounds>
+				<disabled />
+			</genericcontrol>
+			<stringcontrol name="name">
+				<anchored position="insidetopleft" offset="85,20">
+					<right offset="-7" />
+				</anchored>
+				<multilinespacing>20</multilinespacing>
+				<font>sheetlabel</font>
+				<disabled />
+			</stringcontrol>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="library_pagelistentry">
+		<margins control="0,0,0,2" />
+		<sheetdata>
+			<linkfield_list name="librarylink" />
+			<stringc_list_link name="name">
+				<linktarget>librarylink</linktarget>
+			</stringc_list_link>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="library">
+		<frame>utilitybox3</frame>
+		<placement>
+			<size width="700" height="550" />
+		</placement>
+		<sizelimits>
+			<minimum width="600" height="400" />
+			<dynamic />
+		</sizelimits>
+		<script>
+			function onInit()
+				for _,vRecordType in ipairs(LibraryData.getRecordTypes()) do
+					if not LibraryData.isHidden(vRecordType) then
+						local w = recordlist.createWindow();
+						w.setRecordType(vRecordType);
+					end
+				end
+				recordlist.applySort();
+			end
+		</script>
+		<sheetdata>
+			<windowtitlebar name="title">
+				<resource>library_window_title</resource>
+			</windowtitlebar>
+			<anchor_library name="contentanchor" />
+			
+			<list_library_recordtypes name="recordlist" />
+			<scrollbar>
+				<anchored to="recordlist" offset="-5,-10" />
+				<target>recordlist</target>
+			</scrollbar>
+			<button_library_sidebar_gm />
+			<button_library_sidebar_play />
+			<button_library_sidebar_create />
+			<button_library_sidebar_all />
+			
+			<list_library_books name="booklist" />
+			<scrollbar>
+				<anchored to="booklist" offset="-5,-10" />
+				<target>booklist</target>
+			</scrollbar>
+
+			<button_library_store />
+			<button_library_modules />
+
+			<list_library_pages name="pagelist" />
+			<scrollbar>
+				<anchored to="pagelist" offset="-5,-10" />
+				<target>pagelist</target>
+			</scrollbar>
+
+			<filter_library name="filter" />
+			
+			<resize_utilitybox3 />
+			<helper_library />
+			<close_utilitybox3 />
+		</sheetdata>
+	</windowclass>
+</root>

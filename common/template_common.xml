@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- 
+  Please see the license.html file included with this distribution for 
+  attribution and copyright information.
+-->
+
+<root>
+	<template name="anchor_column">
+		<genericcontrol>
+			<anchored position="insidetop" offset="0,-5" height="0"/>
+			<disabled />
+			<invisible />
+		</genericcontrol>
+	</template>
+	<template name="header_column">
+		<label>
+			<anchored height="20">
+				<top parent="columnanchor" anchor="bottom" relation="relative" offset="10" />
+				<left offset="10" />
+				<right offset="-10" />
+			</anchored>
+			<frame name="headersimple" offset="10,3,10,3" />
+		</label>
+	</template>
+	
+	<template name="metalplate">
+		<stringcontrol>
+			<frame name="metalplate" offset="10,2,10,2"/>
+			<font>subwindowtitle</font>
+			<nodrag />
+			<readonly />
+		</stringcontrol>
+	</template>
+
+	<template name="hnx">
+		<numberfield>
+			<bounds>0,0,0,0</bounds>
+			<invisible />
+			<script file="common/scripts/number_crosslink.lua" />
+		</numberfield>
+	</template>
+	
+	<template name="number_modifier">
+		<number_linked>
+			<script file="common/scripts/number_modifier.lua" />
+		</number_linked>
+	</template>
+</root>

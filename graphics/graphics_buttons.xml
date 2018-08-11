@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- 
+  Please see the license.html file included with this distribution for 
+  attribution and copyright information.
+-->
+
+<root>
+	<!-- Common -->
+	<icon name="button_dialog_ok" file="graphics/buttons/button_dialog_ok.png" />
+	<icon name="button_dialog_ok_down" file="graphics/buttons/button_dialog_ok_down.png" />
+	<icon name="button_dialog_cancel" file="graphics/buttons/button_dialog_cancel.png" />
+	<icon name="button_dialog_cancel_down" file="graphics/buttons/button_dialog_cancel_down.png" />
+	<icon name="button_dialog_roll" file="graphics/buttons/button_dialog_roll.png" />
+	<icon name="button_dialog_roll_down" file="graphics/buttons/button_dialog_roll_down.png" />
+			
+	<!-- Override CoreRPG -->
+	<!-- Common -->
+	<icon name="button_close" file="graphics/buttons/button_close.png" />
+	<icon name="button_close_down" file="graphics/buttons/button_close_down.png" />
+	<icon name="button_close_hover" file="graphics/buttons/button_close_hover.png" />
+	<icon name="button_help" file="graphics/buttons/button_help.png" />
+	<icon name="button_help_down" file="graphics/buttons/button_help_down.png" />
+	<icon name="button_help_hover" file="graphics/buttons/button_help_hover.png" />
+	<icon name="button_link" file="graphics/buttons/button_link.png" />
+	<icon name="button_link_down" file="graphics/buttons/button_link_down.png" />
+	<icon name="button_link_empty" file="graphics/buttons/button_link_empty.png" />
+	<icon name="button_link_share" file="graphics/buttons/button_link_share.png" />
+	<icon name="button_link_share_down" file="graphics/buttons/button_link_share_down.png" />
+
+	<!-- Sidebar -->
+	<icon name="button_ct" file="graphics/sidebar/button_ct.png" />
+	<icon name="button_ct_down" file="graphics/sidebar/button_ct_down.png" />
+	<icon name="button_partysheet" file="graphics/sidebar/button_partysheet.png" />
+	<icon name="button_partysheet_down" file="graphics/sidebar/button_partysheet_down.png" />
+	<icon name="button_options" file="graphics/sidebar/button_options.png" />
+	<icon name="button_options_down" file="graphics/sidebar/button_options_down.png" />
+	<icon name="button_calendar" file="graphics/sidebar/button_calendar.png" />
+	<icon name="button_calendar_down" file="graphics/sidebar/button_calendar_down.png" />
+	<icon name="button_color" file="graphics/sidebar/button_color.png" />
+	<icon name="button_color_down" file="graphics/sidebar/button_color_down.png" />
+	<icon name="button_light" file="graphics/sidebar/button_light.png" />
+	<icon name="button_light_down" file="graphics/sidebar/button_light_down.png" />
+	<icon name="button_modifiers" file="graphics/sidebar/button_modifiers.png" />
+	<icon name="button_modifiers_down" file="graphics/sidebar/button_modifiers_down.png" />
+	<icon name="button_effects" file="graphics/sidebar/button_effects.png" />
+	<icon name="button_effects_down" file="graphics/sidebar/button_effects_down.png" />
+
+	<icon name="button_characters" file="graphics/sidebar/button_characters.png" />
+	<icon name="button_characters_down" file="graphics/sidebar/button_characters_down.png" />
+	<icon name="button_book" file="graphics/sidebar/button_story.png" />
+	<icon name="button_book_down" file="graphics/sidebar/button_story_down.png" />
+	<icon name="button_maps" file="graphics/sidebar/button_maps.png" />
+	<icon name="button_maps_down" file="graphics/sidebar/button_maps_down.png" />
+	<icon name="button_people" file="graphics/sidebar/button_people.png" />
+	<icon name="button_people_down" file="graphics/sidebar/button_people_down.png" />
+	<icon name="button_items" file="graphics/sidebar/button_items.png" />
+	<icon name="button_items_down" file="graphics/sidebar/button_items_down.png" />
+	<icon name="button_notes" file="graphics/sidebar/button_notes.png" />
+	<icon name="button_notes_down" file="graphics/sidebar/button_notes_down.png" />
+	<icon name="button_tables" file="graphics/sidebar/button_tables.png" />
+	<icon name="button_tables_down" file="graphics/sidebar/button_tables_down.png" />
+	<icon name="button_vehicles" file="graphics/sidebar/button_vehicles.png" />
+	<icon name="button_vehicles_down" file="graphics/sidebar/button_vehicles_down.png" />
+
+	<icon name="button_backgrounds" file="graphics/sidebar/button_backgrounds.png" />
+	<icon name="button_backgrounds_down" file="graphics/sidebar/button_backgrounds_down.png" />
+	<icon name="button_classes" file="graphics/sidebar/button_classes.png" />
+	<icon name="button_classes_down" file="graphics/sidebar/button_classes_down.png" />
+	<icon name="button_feats" file="graphics/sidebar/button_feats.png" />
+	<icon name="button_feats_down" file="graphics/sidebar/button_feats_down.png" />
+	<icon name="button_races" file="graphics/sidebar/button_races.png" />
+	<icon name="button_races_down" file="graphics/sidebar/button_races_down.png" />
+	<icon name="button_skills" file="graphics/sidebar/button_skills.png" />
+	<icon name="button_skills_down" file="graphics/sidebar/button_skills_down.png" />
+	<icon name="button_spells" file="graphics/sidebar/button_spells.png" />
+	<icon name="button_spells_down" file="graphics/sidebar/button_spells_down.png" />
+
+	<icon name="button_library" file="graphics/sidebar/button_library.png" />
+	<icon name="button_library_down" file="graphics/sidebar/button_library_down.png" />
+	<icon name="button_tokencase" file="graphics/sidebar/button_tokencase.png" />
+	<icon name="button_tokencase_down" file="graphics/sidebar/button_tokencase_down.png" />
+	
+	<icon name="button_encounters" file="graphics/sidebar/button_encounters.png" />
+	<icon name="button_encounters_down" file="graphics/sidebar/button_encounters_down.png" />
+	<icon name="button_parcels" file="graphics/sidebar/button_parcels.png" />
+	<icon name="button_parcels_down" file="graphics/sidebar/button_parcels_down.png" />
+	<icon name="button_quests" file="graphics/sidebar/button_quests.png" />
+	<icon name="button_quests_down" file="graphics/sidebar/button_quests_down.png" />
+	
+	<!-- Combat Tracker -->
+	<icon name="button_fist" file="graphics/buttons/button_fist.png" />
+	<icon name="button_fist_down" file="graphics/buttons/button_fist_down.png" />
+	<icon name="button_sword" file="graphics/buttons/button_sword.png" />
+	<icon name="button_sword_down" file="graphics/buttons/button_sword_down.png" />
+	<icon name="button_shield" file="graphics/buttons/button_shield.png" />
+	<icon name="button_shield_down" file="graphics/buttons/button_shield_down.png" />
+	<icon name="button_space" file="graphics/buttons/button_space.png" />
+	<icon name="button_space_down" file="graphics/buttons/button_space_down.png" />
+	<icon name="button_effect" file="graphics/buttons/button_effect.png" />
+	<icon name="button_effect_down" file="graphics/buttons/button_effect_down.png" />
+	<icon name="button_section_targeting" file="graphics/buttons/button_section_targeting.png" />
+	<icon name="button_section_targeting_down" file="graphics/buttons/button_section_targeting_down.png" />
+	<icon name="button_menu" file="graphics/buttons/button_menu.png" />
+	<icon name="button_menu_down" file="graphics/buttons/button_menu.png" />
+	<icon name="button_ctnextround" file="graphics/buttons/button_ctnextround.png" />
+	<icon name="button_ctnextround_down" file="graphics/buttons/button_ctnextround_down.png" />
+	<icon name="button_ctnextactor" file="graphics/buttons/button_ctnextactor.png" />
+	<icon name="button_ctnextactor_down" file="graphics/buttons/button_ctnextactor_down.png" />
+	<icon name="drag_targeting" file="graphics/icons/drag_targeting.png" />
+</root>

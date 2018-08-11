@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- 
+  Please see the license.html file included with this distribution for 
+  attribution and copyright information.
+  
+  line number(s) altered: 208
+-->
+
+<root>
+	<template name="button_ctentry_activateattributes">
+		<buttoncontrol name="activateattributes">
+			<anchored to="rightanchor" width="35" height="32">
+				<top relation="relative"/>
+				<right anchor="left" relation="relative" offset="10" />
+			</anchored>
+			<tooltip textres="ct_tooltip_attribute" />
+			<state icon="button_fist" />
+			<state icon="button_fist_down" />
+			<script>
+				function onValueChanged()
+					window.setAttributesVisible();
+					window.windowlist.onEntrySectionToggle();
+				end
+			</script>
+		</buttoncontrol>
+	</template>
+
+	<template name="anchor_ctbox_client_header">
+		<genericcontrol name="headeranchor">
+			<anchored to="contentanchor" height="26">
+				<top anchor="bottom" relation="relative" offset="2" />
+				<left offset="5"/>
+				<right />
+			</anchored>
+			<disabled />
+		</genericcontrol>
+	</template>
+	<template name="frame_ctbox_client_header">
+		<metalplate>
+			<anchored to="headeranchor" position="over" />
+		</metalplate>
+	</template>
+	<template name="anchor_ct_label_right">
+		<genericcontrol name="rightanchor">
+			<anchored to="contentanchor" position="insidetopright" offset="43,3" width="0" height="0" />
+			<disabled />
+		</genericcontrol>
+	</template>
+	<template name="label_ct_client_rounds">
+		<metalplate>
+			<anchored height="24">
+				<bottom offset="-22" />
+				<right parent="contentanchor" offset="-55" />
+			</anchored>
+			<static textres="ct_label_round" />
+		</metalplate>
+	</template>
+	<template name="number_ct_client_rounds">
+		<simplenumber name="round">
+			<anchored width="40" height="24">
+				<bottom offset="-22" />
+				<right parent="contentanchor" />
+			</anchored>
+			<frame name="metalplate" offset="5,2,5,2" />
+			<font>subwindowtitle</font>
+		</simplenumber>
+	</template>
+	<template name="anchor_ctbox_host_header">
+		<genericcontrol name="headeranchor">
+			<anchored to="contentanchor" height="26">
+				<top anchor="bottom" relation="relative" offset="2" />
+				<left />
+				<right />
+			</anchored>
+			<disabled />
+		</genericcontrol>
+	</template>
+	<template name="frame_ctbox_host_header_visibility">
+		<metalplate name="header_vis">
+			<anchored to="headeranchor" height="26" width="12">
+				<top />
+				<left offset="8" />
+			</anchored>
+		</metalplate>
+	</template>
+	<template name="frame_ctbox_host_header_labels">
+		<metalplate name="header_labels">
+			<anchored to="headeranchor" height="26">
+				<top />
+				<left offset="40" />
+				<right offset="-205" />
+			</anchored>
+		</metalplate>
+	</template>
+	<template name="frame_ctbox_host_header_toggles">
+		<metalplate name="header_toggles">
+			<anchored to="headeranchor" height="26">
+				<top />
+				<left anchor="right" offset="-185" />
+				<right />
+			</anchored>
+		</metalplate>
+	</template>
+	<!-- NOTE: Redefine list box template to make sure that new ct.lua script used -->
+	<template name="list_ctbox_host">
+		<windowlist name="list">
+			<anchored to="contentanchor">
+				<top anchor="bottom" relation="relative" offset="5" />
+				<left offset="-30" />
+				<right offset="10" />
+				<bottom parent="" offset="-55" />
+			</anchored>
+			<datasource>.list</datasource>
+			<class>ct_entry</class>
+			<empty font="list-empty-ct" textres="ct_emptylist" />
+			<script file="ct/scripts/ct.lua" />
+		</windowlist>
+	</template>
+	<template name="button_ct_menu">
+		<metalplate>
+			<bounds>120,-45,50,26</bounds>
+			<tooltip textres="ct_tooltip_menu" />
+			<static textres="ct_label_menu" />
+			<script file="ct/scripts/ct_menu.lua" />
+		</metalplate>
+	</template>
+	<template name="button_ct_friendfoe">
+		<genericcontrol>
+			<anchored width="35" height="32" />
+			<cursor hover="hand" />
+			<script>
+				function onDragStart(button, x, y, draginfo)
+					draginfo.setType("combattrackerff");
+					draginfo.setIcon(icon[1]);
+					draginfo.setStringData(value[1]);
+
+					return true;
+				end
+			</script>
+		</genericcontrol>
+	</template>
+	<template name="label_ct_host_rounds">
+		<metalplate>
+			<anchored height="24">
+				<bottom offset="-22" />
+				<right parent="contentanchor" offset="-95" />
+			</anchored>
+			<static textres="ct_label_round" />
+		</metalplate>
+	</template>
+	<template name="number_ct_host_rounds">
+		<simplenumber name="round">
+			<anchored width="40" height="24">
+				<bottom offset="-22" />
+				<right parent="contentanchor" offset="-40" />
+			</anchored>
+			<frame name="metalplate" offset="5,2,5,2" />
+			<font>subwindowtitle</font>
+		</simplenumber>
+	</template>
+	<template name="button_ct_nextround">
+		<buttoncontrol>
+			<anchored width="35" height="32">
+				<bottom offset="-18" />
+				<right parent="contentanchor" />
+			</anchored>
+			<icon normal="button_ctnextround" pressed="button_ctnextround_down" />
+			<tooltip textres="ct_tooltip_nextround" />
+			<script>
+				function onInit()
+					registerMenuItem(Interface.getString("ct_menu_round5"), "num5", 4);
+					registerMenuItem(Interface.getString("ct_menu_round10"), "num10", 5);
+					registerMenuItem(Interface.getString("ct_menu_round15"), "num15", 6);
+					registerMenuItem(Interface.getString("ct_menu_round20"), "num20", 7);
+				end
+				
+				function onMenuSelection(selection)
+					if selection == 4 then
+						CombatManager.nextRound(5);
+					elseif selection == 5 then
+						CombatManager.nextRound(10);
+					elseif selection == 6 then
+						CombatManager.nextRound(15);
+					elseif selection == 7 then
+						CombatManager.nextRound(20);
+					end
+				end
+				
+				function onButtonPress()
+					CombatManager.nextRound(1);
+				end
+				
+				function onDragStart(button, x, y, draginfo)
+					draginfo.setType("combattrackernextround");
+					draginfo.setIcon("button_ctnextround");
+					
+					return true;
+				end
+			</script>
+		</buttoncontrol>
+	</template>
+	
+	<template name="label_ct">
+		<stringcontrol>
+			<anchored height="20" />
+			<font>sheetlabel</font>
+			<!--<color>F8F6EF</color>-->
+			<shadow offset="2,2" color="000000" />
+			<nodrag />
+			<readonly />
+		</stringcontrol>
+	</template>
+	<template name="frame_ctsub">
+		<genericcontrol>
+			<anchored>
+				<left offset="80" />
+				<top offset="-8" />
+				<right offset="-4" />
+				<bottom offset="8" />
+			</anchored>
+			<frame name="ct_subgroupbox" />
+			<disabled />
+		</genericcontrol>
+	</template>
+	<template name="icon_ctsection">
+		<genericcontrol>
+			<anchored width="25" height="32">
+				<left offset="55" />
+				<top parent="active_spacer_top" anchor="bottom" relation="current" offset="8" />
+			</anchored>
+		</genericcontrol>
+	</template>
+
+	<template name="number_ct_ability">
+		<number_ct>
+			<anchored width="20" height="20" />
+			<default>10</default>
+			<script>
+				function action(draginfo)
+					local rActor = ActorManager.getActorFromCT(window.getDatabaseNode());
+					if Input.isShiftPressed() then
+						ActionSave.performRoll(draginfo, rActor, self.target[1]);
+					else
+						ActionCheck.performRoll(draginfo, rActor, self.target[1]);
+					end
+					return true;
+				end
+				
+				function onDragStart(button, x, y, draginfo)
+					return action(draginfo);
+				end
+
+				function onDoubleClick(x,y)
+					return action();
+				end
+			</script>
+		</number_ct>
+	</template>
+	<template name="number_ct_init">
+		<number_ct>
+			<displaysign />
+			<script>
+				function action(draginfo)
+					local node = window.getDatabaseNode();
+					local rActor = ActorManager.getActorFromCT(node);
+					ActionInit.performRoll(draginfo, rActor, CombatManager.isCTHidden(node));
+					return true;
+				end
+				
+				function onDragStart(button, x, y, draginfo)
+					return action(draginfo);
+				end
+
+				function onDoubleClick(x,y)
+					return action();
+				end
+			</script>
+		</number_ct>
+	</template>
+	<template name="list_ct_actions">
+		<windowlist>
+			<anchored>
+				<top parent="active_spacer_top" anchor="bottom" relation="relative" offset="3" />
+				<left parent="activeicon" anchor="right" offset="75" />
+				<right offset="-17" />
+				<sizelimits><minimum height="24" /></sizelimits>
+			</anchored>
+			<class>ct_power</class>
+			<noscroll />
+			<script>
+				function addEntry()
+					local w = createWindow();
+					w.value.setFocus(true);
+				end
+				function onListChanged()
+					window.setActiveVisible();
+				end
+			</script>
+		</windowlist>
+	</template>
+	<template name="label_ct_actions">
+		<label>
+			<anchored position="lefthigh" offset="5,0" width="60" />
+			<static />
+		</label>
+	</template>
+	<template name="button_ct_actions_emptyadd">
+		<button_iadd>
+			<anchored position="insidetopright" offset="5,0" />
+			<script>
+				function onInit()
+					update();
+				end
+				function onButtonPress()
+					window[target[1]].addEntry();
+					update();
+				end
+				function update()
+					if window[target[1]].isVisible() then
+						setVisible(window[target[1]].getWindowCount() == 0);
+					else
+						setVisible(false);
+					end
+				end
+			</script>
+		</button_iadd>
+	</template>
+	
+	<template name="base_clientct_health">
+		<genericcontrol name="healthbase">
+			<anchored to="rightanchor" width="110" height="20">
+				<top />
+				<right anchor="left" relation="relative" offset="-10" />
+			</anchored>
+			<disabled />
+		</genericcontrol>
+	</template>
+	<template name="string_clientct_status">
+		<simplestring name="status">
+			<anchored to="healthbase" position="over" />
+			<frame name="fieldlight" offset="7,5,7,5" />
+			<center />
+			<static />
+			<invisible />
+		</simplestring>
+	</template>
+	<template name="number_clientct_wounds">
+		<number_ct_static name="wounds">
+			<anchored to="healthbase" width="30" height="20">
+				<top />
+				<right />
+			</anchored>
+			<min value="0" />
+			<script>
+				function onValueChanged()
+					window.onHealthChanged();
+				end
+			</script>
+		</number_ct_static>
+	</template>
+	<template name="number_clientct_hptemp">
+		<number_ct_static name="hptemp">
+			<anchored to="wounds" width="30" height="20">
+				<top />
+				<right anchor="left" offset="-10" />
+			</anchored>
+			<color>0000AA</color>
+			<script>
+				function onValueChanged()
+					window.onHealthChanged();
+				end
+			</script>
+		</number_ct_static>
+	</template>
+	<template name="number_clientct_hp">
+		<number_ct_static name="hptotal">
+			<anchored to="hptemp" width="30" height="20">
+				<top />
+				<right anchor="left" offset="-10" />
+			</anchored>
+			<min value="0" />
+			<script>
+				function onValueChanged()
+					window.onHealthChanged();
+				end
+			</script>
+		</number_ct_static>
+	</template>
+</root>

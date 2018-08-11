@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- 
+  Please see the license.html file included with this distribution for 
+  attribution and copyright information.
+-->
+
+<root>
+	<!-- Note: FGF tags processed first for FG Classic, and TTF tags processed first for FGU -->
+	
+	
+	<font name="windowtitle">
+        <ttf file="graphics/fonts/MrsEavesSmallCaps_Regular.ttf" name="MrsEavesSmallCaps" size="32" />
+        <color value="831C24" />
+    </font>
+	<!-- -->
+	<font name="subwindowsmalltitle">
+		<fgffile name="graphics/fonts/bold-10.fgf" />
+		<ttf file="graphics/fonts/Candara.ttf" name="Candara SDF" size="15" bold="true" />
+		<color value="831C24" />
+	</font>
+	<font name="reference-header">
+		<fgffile name="graphics/fonts/bold-10.fgf" />
+		<ttf file="graphics/fonts/Candara.ttf" name="Candara SDF" size="15" bold="true" />
+		<color value="000000" />
+	</font>
+	<font name="subwindowtitle">
+		<fgffile name="graphics/fonts/title-regular-10.fgf" />
+		<ttf file="graphics/fonts/Candara.ttf" name="Candara SDF" size="15"/>
+		<color value="831C24" />
+	</font>
+	<font name="modcollector">
+		<fgffile name="graphics/fonts/diemod.fgf" />
+		<ttf file="graphics/fonts/Tahoma.ttf" name="Tahoma SDF" size="23" />
+		<color value="#000000" />
+	</font>
+	<font name="modcollectorlabel">
+		<fgffile name="graphics/fonts/modcollectorlabel.fgf" />
+		<ttf file="graphics/fonts/Tahoma.ttf" name="Tahoma SDF" size="11" />
+		<color value="#000000" />
+	</font>
+	
+	<!-- Custom font -->
+	<font name="sheetnumbermini">
+		<fgffile name="graphics/fonts/regular-8.fgf" />
+		<ttf file="graphics/fonts/Candara.ttf" name="Candara SDF" size="13" />
+		<color value="#000000" />
+	</font>
+	<!-- TESTING -->
+	
+	
+	
+</root>

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- 
+  Please see the license.html file included with this distribution for 
+  attribution and copyright information.
+-->
+
+<root>
+	<distance>
+		<base>5</base>
+		<diagmult>1</diagmult>
+		<suffix>'</suffix>
+	</distance>
+	
+	<die name="d4">
+		<icon>d4icon</icon>
+		<position>495,-70</position>
+	</die>
+	<die name="d6">
+		<icon>d6icon</icon>
+		<position>445,-70</position>
+	</die>
+	<die name="d8">
+		<icon>d8icon</icon>
+		<position>395,-70</position>
+	</die>
+	<die name="d10">
+		<icon>d10icon</icon>
+		<position>345,-70</position>
+	</die>
+	<die name="d12">
+		<icon>d12icon</icon>
+		<position>295,-70</position>
+	</die>
+	<die name="d20">
+		<icon>d20icon</icon>
+		<position>245,-70</position>
+	</die>
+	<!--<die name="dF" merge="delete" />-->
+
+	<die name="r4">
+		<model>d4</model>
+		<icon>d4ricon</icon>
+	</die>
+	<die name="r6">
+		<model>d6</model>
+		<icon>d6ricon</icon>
+	</die>
+	<die name="r8">
+		<model>d8</model>
+		<icon>d8ricon</icon>
+	</die>
+	<die name="r10">
+		<model>d10</model>
+		<icon>d10ricon</icon>
+	</die>
+	<die name="r12">
+		<model>d12</model>
+		<icon>d12ricon</icon>
+	</die>
+	<die name="r20">
+		<model>d20</model>
+		<icon>d20ricon</icon>
+	</die>
+	<die name="r100">
+		<model>d100</model>
+		<icon>d10ricon</icon>
+	</die>
+
+	<die name="g4">
+		<model>d4</model>
+		<icon>d4gicon</icon>
+	</die>
+	<die name="g6">
+		<model>d6</model>
+		<icon>d6gicon</icon>
+	</die>
+	<die name="g8">
+		<model>d8</model>
+		<icon>d8gicon</icon>
+	</die>
+	<die name="g10">
+		<model>d10</model>
+		<icon>d10gicon</icon>
+	</die>
+	<die name="g12">
+		<model>d12</model>
+		<icon>d12gicon</icon>
+	</die>
+	<die name="g20">
+		<model>d20</model>
+		<icon>d20gicon</icon>
+	</die>
+	<die name="g100">
+		<model>d100</model>
+		<icon>d10gicon</icon>
+	</die>
+
+	<die name="b4">
+		<model>d4</model>
+		<icon>d4bicon</icon>
+	</die>
+	<die name="b6">
+		<model>d6</model>
+		<icon>d6bicon</icon>
+	</die>
+	<die name="b8">
+		<model>d8</model>
+		<icon>d8bicon</icon>
+	</die>
+	<die name="b10">
+		<model>d10</model>
+		<icon>d10bicon</icon>
+	</die>
+	<die name="b12">
+		<model>d12</model>
+		<icon>d12bicon</icon>
+	</die>
+	<die name="b20">
+		<model>d20</model>
+		<icon>d20bicon</icon>
+	</die>
+	<die name="b100">
+		<model>d100</model>
+		<icon>d10bicon</icon>
+	</die>
+
+	<die name="p4">
+		<model>d4</model>
+		<icon>d4picon</icon>
+	</die>
+	<die name="p6">
+		<model>d6</model>
+		<icon>d6picon</icon>
+	</die>
+	<die name="p8">
+		<model>d8</model>
+		<icon>d8picon</icon>
+	</die>
+	<die name="p10">
+		<model>d10</model>
+		<icon>d10picon</icon>
+	</die>
+	<die name="p12">
+		<model>d12</model>
+		<icon>d12picon</icon>
+	</die>
+	<die name="p20">
+		<model>d20</model>
+		<icon>d20picon</icon>
+	</die>
+	<die name="p100">
+		<model>d100</model>
+		<icon>d10picon</icon>
+	</die>
+
+	<customdie name="d3">
+		<model>d6</model>
+		<menuicon>customdice</menuicon>
+		<script>
+			function onValue(result)
+				return math.ceil(result/2);
+			end
+		</script>
+	</customdie>
+	<customdie name="d2">
+		<model>d6</model>
+		<menuicon>customdice</menuicon>
+		<script>
+			function onValue(result)
+				return math.ceil(result/3);
+			end
+		</script>
+	</customdie>
+	<customdie name="d0">
+		<model>d6</model>
+		<menuicon>customdice</menuicon>
+		<script>
+			function onValue(result)
+				return 0;
+			end
+		</script>
+	</customdie>
+
+	<die name="r3">
+		<model>d6</model>
+		<icon>d6ricon</icon>
+		<script>
+			function onValue(result)
+				return math.ceil(result/2);
+			end
+		</script>
+	</die>
+	<die name="r2">
+		<model>d6</model>
+		<icon>d6ricon</icon>
+		<script>
+			function onValue(result)
+				return math.ceil(result/3);
+			end
+		</script>
+	</die>
+	
+	<die name="g3">
+		<model>d6</model>
+		<icon>d6gicon</icon>
+		<script>
+			function onValue(result)
+				return math.ceil(result/2);
+			end
+		</script>
+	</die>
+	<die name="g2">
+		<model>d6</model>
+		<icon>d6gicon</icon>
+		<script>
+			function onValue(result)
+				return math.ceil(result/3);
+			end
+		</script>
+	</die>
+
+	<die name="b3">
+		<model>d6</model>
+		<icon>d6bicon</icon>
+		<script>
+			function onValue(result)
+				return math.ceil(result/2);
+			end
+		</script>
+	</die>
+	<die name="b2">
+		<model>d6</model>
+		<icon>d6bicon</icon>
+		<script>
+			function onValue(result)
+				return math.ceil(result/3);
+			end
+		</script>
+	</die>
+
+	<die name="p3">
+		<model>d6</model>
+		<icon>d6picon</icon>
+		<script>
+			function onValue(result)
+				return math.ceil(result/2);
+			end
+		</script>
+	</die>
+	<die name="p2">
+		<model>d6</model>
+		<icon>d6picon</icon>
+		<script>
+			function onValue(result)
+				return math.ceil(result/3);
+			end
+		</script>
+	</die>
+
+	<imagesettings>
+		<pointer defaultconeangle="5E" />
+	</imagesettings>
+	
+	<hotkeybar>
+		<title frame="hotkeytitlebox" frameoffset="2,0,2,0" margin="2,0" font="hotkey" />
+	</hotkeybar>
+</root>
