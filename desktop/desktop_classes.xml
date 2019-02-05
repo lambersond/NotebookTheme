@@ -6,33 +6,6 @@
 -->
 
 <root>
-	<windowclass name="desktopdecal">
-		<script>
-			function onInit()
-				OptionsManager.registerCallback("DDCL", onUpdate);
-				onUpdate();
-			end
-			
-			function onClose()
-				OptionsManager.unregisterCallback("DDCL", onUpdate);
-			end
-			
-			function onUpdate()
-				local sDecal = OptionsManager.getOption("DDCL");
-				if sDecal == "off" then
-					sDecal = "";
-				end
-				decal.setIcon(sDecal, true);
-			end
-		</script>
-		<sheetdata>
-			<genericcontrol name="decal">
-				<bounds>0,0,-1,-1</bounds>
-				<disabled />
-			</genericcontrol>
-		</sheetdata>
-	</windowclass>
-
 	<windowclass name="chat">
 		<frame>chatbox</frame>
 		<noclose />
@@ -72,67 +45,6 @@
 			
 			<chat_resize />
 		</sheetdata>
-	</windowclass>
-	<windowclass name="chatlocal">
-		<frame>chatbox</frame>
-		<noclose />
-		<sizelimits>
-			<dynamic />
-			<minimum width="350" height="350" />
-		</sizelimits>
-		<sheetdata>
-			<basicchatentry />
-			<basicchatentryscroll />
-			<basicchatentrymode />
-
-			<basicchatwindow name="chat" />
-			<basicchatwindowscroll />
-		</sheetdata>
-	</windowclass>
-	
-	<windowclass name="identitylist">
-		<sizelimits>
-			<minimum height="20" />
-		</sizelimits>
-		<script file="desktop/scripts/identitylist.lua" />
-		<sheetdata>
-			<genericcontrol name="anchor">
-				<bounds>0,0,0,0</bounds>
-			</genericcontrol>
-		</sheetdata>
-	</windowclass>
-
-	<windowclass name="characterlist">
-		<script file="desktop/scripts/characterlist.lua" />
-		<sheetdata>
-			<genericcontrol name="anchor">
-				<bounds>5,5,1,1</bounds>
-			</genericcontrol>
-		</sheetdata>
-	</windowclass>
-	
-	<windowclass name="shortcuts">
-		<script>
-			function onInit()
-				DesktopManager.registerContainerWindow(self);
-			end
-		</script>
-		<sheetdata>
-			<subwindow name="shortcutbar">
-				<anchored position="insideright" width="100" />
-				<class>shortcutbar</class>
-				<activate />
-				<fastinit />
-			</subwindow>
-		</sheetdata>
-	</windowclass>
-	<windowclass name="shortcutbar">
-		<frame>shortcuts</frame>
-		<sheetdata />
-	</windowclass>
-	<windowclass name="shortcutsanchor">
-		<minimum width="0" height="0" />
-		<sheetdata />
 	</windowclass>
 
 	<windowclass name="modifierstack">

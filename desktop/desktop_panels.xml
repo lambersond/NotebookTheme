@@ -6,69 +6,21 @@
 -->
 
 <root>
-	<panel name="desktopdecalpanel" modes="all">
-		<class>desktopdecal</class>
-		<bounds>100,100,-100,-100</bounds>
-		<disabled />
-	</panel>
-
-	<panel name="shortcutsanchor">
-		<class>shortcutsanchor</class>
-		<bounds>-304,0,0,0</bounds>
-		<disabled />
-	</panel>
-	<panel name="shortcuts">
-		<class>shortcuts</class>
-		<anchored>
-			<top />
-			<left parent="shortcutsanchor" anchor="right" />
-			<right />
-			<bottom offset="-33" />
-		</anchored>
-	</panel>
-
-	<panel name="characterlist">
-		<class>characterlist</class>
-		<anchored height="100">
-			<left />
-			<top />
-			<right parent="shortcutsanchor" anchor="left" />
-		</anchored>
-	</panel>
-	
 	<panel name="chat" modes="host">
 		<class>chat</class>
 		<bounds>15,90,390,-210</bounds>
 		<dynamic />
 		<locked />
 	</panel>
-
 	<panel name="chat" modes="client">
 		<class>chat</class>
 		<bounds>15,90,390,-210</bounds>
 		<dynamic />
 		<locked />
 	</panel>
-
 	<panel name="chat" modes="local">
 		<class>chatlocal</class>
 		<bounds>15,90,390,-210</bounds>
-		<dynamic />
-		<locked />
-	</panel>
-
-	<panel name="identitylist" modes="host">
-		<class>identitylist</class>
-		<anchored height="20">
-			<left parent="chat" />
-			<top parent="chat" anchor="bottom" offset="2" />
-			<right parent="shortcutsanchor" anchor="left" />
-		</anchored>
-	</panel>
-
-	<panel name="modifierstack" modes="host,client">
-		<class>modifierstack</class>
-		<bounds>15,-100,64,57</bounds>
 		<dynamic />
 		<locked />
 	</panel>
@@ -83,8 +35,7 @@
 		<dynamic />
 		<locked />
 	</panel>
-	
-	
+
 	<panel name="ringstain" modes="all">
 		<bounds>0,0,0,0</bounds>
 		<anchored height="180" width="180">
