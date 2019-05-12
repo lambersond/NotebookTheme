@@ -5,8 +5,8 @@
 	<!-- Attributes -->
 	<properties>
 		<name>5E Theme - Notebook paper</name>
-		<version>1.0.5</version>
-		<description>Notebook paper theme - 4 Febuary 2019</description>
+		<version>1.0.6</version>
+		<description>Notebook paper theme - 12 May 2019</description>
 		<ruleset>
 			<name>5E</name>
 		</ruleset>
@@ -21,7 +21,6 @@
 		<includefile source="ps\template_ps.xml" />
 		
 		<includefile source="utility\utility_modifiers.xml" />
-		<includefile source="utility\utility_library.xml" />
 		<includefile source="utility\template_utility.xml" />
 		
 		<includefile source="graphics\graphics_fonts.xml" />

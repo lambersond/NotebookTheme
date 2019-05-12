@@ -6,25 +6,6 @@
 -->
 
 <root>
-	<panel name="chat" modes="host">
-		<class>chat</class>
-		<bounds>15,90,390,-210</bounds>
-		<dynamic />
-		<locked />
-	</panel>
-	<panel name="chat" modes="client">
-		<class>chat</class>
-		<bounds>15,90,390,-210</bounds>
-		<dynamic />
-		<locked />
-	</panel>
-	<panel name="chat" modes="local">
-		<class>chatlocal</class>
-		<bounds>15,90,390,-210</bounds>
-		<dynamic />
-		<locked />
-	</panel>
-
 	<panel name="dicetower" modes="host,client">
 		<bounds>,0,0,0</bounds>
 		<anchored height="110" width="110">
