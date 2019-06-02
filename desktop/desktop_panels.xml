@@ -21,7 +21,7 @@
 		<bounds>0,0,0,0</bounds>
 		<anchored height="180" width="180">
 			<bottom offset="-50" />
-			<right parent="dicetower" anchor="left" offset="-10"/>
+			<right parent="shortcutsanchor" anchor="left" offset="-150"/>
 		</anchored>
 		<class>ringstain</class>
 		<dynamic />
