@@ -13,6 +13,14 @@
 			<dynamic />
 			<minimum width="350" height="380" />
 		</sizelimits>
+		<script>
+			function onInit()
+				onLockStateChanged();
+			end
+			function onLockStateChanged()
+				resize.setVisible(not getLockState());
+			end
+		</script>
 		<sheetdata>
 			<basicchatentry name="entry" />
 			<basicchatentryscroll name="entryscroll" />
@@ -42,7 +50,7 @@
 			<basicchatwindowscroll name="chatscroll" />
 			<basicchatwindowstatus name="chatstatus" />
 			
-			<chat_resize />
+			<resize_chatbox name="resize" />
 		</sheetdata>
 	</windowclass>
 

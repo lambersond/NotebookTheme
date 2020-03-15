@@ -151,21 +151,6 @@
 		</genericcontrol>
 	</template>
 	
-	<template name="chat_resize">
-		<resize_chatbox>
-			<script>
-				function onInit()
-					updateVisibility();
-					window.onLockChanged = updateVisibility;
-				end
-				
-				function updateVisibility()
-					setVisible(not window.getLockState());
-				end
-			</script>
-		</resize_chatbox>
-	</template>
-	
 	<template name="desktop_stackitem">	
 		<windowreferencecontrol>
 			<bounds>0,0,47,27</bounds>
