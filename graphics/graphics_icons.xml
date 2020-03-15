@@ -62,7 +62,6 @@
 	<!-- Override CoreRPG ruleset graphics -->
 
 	<!-- Common -->
-	<icon name="window_resize_filled" file="graphics/icons/window_resize_filled.png" />
 	<icon name="tabtop" file="graphics/tabs/tabtop.png" />
 
 	<!-- Modifier Stack -->
