@@ -221,8 +221,8 @@
 		<bitmap file="graphics/frames/utilitybox3.png" />
 		<offset>50,71,50,50</offset>
 		<insideoffset>10,10,10,10</insideoffset>
-		
 	</framedef>
+	
 	<framedef name="campaignlist_tables">
 		<bitmap file="graphics/frames/utilitybox3.png" />
 		<topleft rect="0,0,74,75" />
@@ -254,7 +254,12 @@
 		<offset>12,11,17,18</offset>
 		<insideoffset>0,0,4,5</insideoffset>
 	</framedef>
-	
+	<framedef name="tokenbag">
+		<bitmap file="graphics/frames/utilitybox3.png" />
+		<offset>74,75,77,51</offset>
+		<insideoffset>0,0,0,0</insideoffset>
+	</framedef>
+
 	<!-- Calendar -->
 	<framedef name="calendar">
 		<bitmap file="graphics/frames/utilitybox3.png" />

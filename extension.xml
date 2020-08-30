@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <root version="3.0" release="8" logo="logo.png">
-	<announcement text="Notebook paper theme v1.1.2\rBy Dailies and Dungeons\rCopyright 2015 Smiteworks USA, LLC" font="emotefont" icon="DDlogo_5E" />
+	<announcement text="Notebook paper theme v1.2.0\rBy Dailies and Dungeons\rCopyright 2015 Smiteworks USA, LLC" font="emotefont" icon="DDlogo_5E" />
 
 	<!-- Attributes -->
 	<properties>
-		<name>5E Theme - Notebook paper</name>
-		<version>1.1.2</version>
-		<description>Notebook paper theme - 29 March 2020</description>
+		<name>5E Theme - Notebook paper(v1.2.0)</name>
+		<version>1.2.0</version>
+		<description>Notebook paper theme - 30 August 2020</description>
 		<ruleset>
 			<name>5E</name>
 		</ruleset>
