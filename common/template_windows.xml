@@ -209,6 +209,14 @@
 			</anchored>
 		</resize>
 	</template>
+	<template name="resize_tokenbag">
+		<resize>
+			<anchored>
+				<right offset="-6" />
+				<bottom offset="-3" />
+			</anchored>
+		</resize>
+	</template>
 
 	<template name="close_base">
 		<buttoncontrol>
@@ -355,6 +363,14 @@
 			</anchored>
 		</close>
 	</template>
+	<template name="close_tokenbag">
+		<close>
+			<anchored>
+				<top offset="27" />
+				<right offset="0" />
+			</anchored>
+		</close>
+	</template>
 
 	<template name="help_calendar">
 		<help>
@@ -428,7 +444,15 @@
 			</anchored>
 		</help>
 	</template>
-	
+	<template name="help_tokenbag">
+		<help>
+			<anchored>
+				<top offset="27" />
+				<right offset="-22" />
+			</anchored>
+		</help>
+	</template>
+
 	<template name="button_imagewindow_sizeup">
 		<button_window_sizeup>
 			<anchored position="insidetopright" offset="70,19" />

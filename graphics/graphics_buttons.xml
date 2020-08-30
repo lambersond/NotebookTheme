@@ -51,6 +51,8 @@
 	<icon name="button_modifiers_down" file="graphics/sidebar/button_modifiers_down.png" />
 	<icon name="button_effects" file="graphics/sidebar/button_effects.png" />
 	<icon name="button_effects_down" file="graphics/sidebar/button_effects_down.png" />
+	<icon name="button_assets" file="graphics/sidebar/button_assets.png" />
+	<icon name="button_assets_down" file="graphics/sidebar/button_assets_down.png" />
 
 	<icon name="button_characters" file="graphics/sidebar/button_characters.png" />
 	<icon name="button_characters_down" file="graphics/sidebar/button_characters_down.png" />
